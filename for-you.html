@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Your Work: What It Can Do and Prompts to Try | Human Agency</title>
+<meta name="description" content="Plain-English AI basics for cafés, shops, salons, trades, offices, developers, project and programme managers, and IT directors: what AI can do for you, and prompts you can copy.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f9f8f6;
+  --surface: #ffffff;
+  --border: #ebebeb;
+  --text: #111111;
+  --muted: #666666;
+  --subtle: #aaaaaa;
+  --accent: #4f46e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #f5f5f5;
+    --muted: #999999;
+    --subtle: #666666;
+  }
+}
+
+:root[data-theme="light"] {
+  --bg: #f9f8f6;
+  --surface: #ffffff;
+  --border: #ebebeb;
+  --text: #111111;
+  --muted: #666666;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+  --text: #f5f5f5;
+  --muted: #999999;
+}
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+header { border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 15px; font-weight: 800; letter-spacing: -0.4px; color: var(--text); text-decoration: none; }
+.logo .dot { color: var(--accent); }
+nav { display: flex; gap: 24px; align-items: center; }
+nav a { font-size: 13px; font-weight: 500; color: var(--muted); transition: color 0.15s; text-decoration: none; }
+nav a:hover { color: var(--text); }
+.nav-mobile-toggle { display: none; background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 56px 24px 32px; }
+.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 900; letter-spacing: -0.8px; line-height: 1.15; color: var(--text); margin-bottom: 12px; }
+.hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 24px; line-height: 1.7; }
+.search-wrap { position: relative; max-width: 440px; }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--subtle); font-size: 15px; pointer-events: none; }
+.search-input { width: 100%; font-family: 'Inter', sans-serif; font-size: 15px; padding: 12px 52px 12px 42px; border: 2px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--text); outline: none; transition: border-color .15s; }
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--subtle); }
+.search-kbd { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 10px; font-weight: 700; color: var(--subtle); background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; pointer-events: none; font-family: 'Inter', sans-serif; transition: opacity .15s; letter-spacing: .3px; }
+.search-input:focus ~ .search-kbd { opacity: 0; }
+.recent-strip { display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; align-items: center; }
+.recent-label { font-size: 11px; font-weight: 700; color: var(--subtle); white-space: nowrap; letter-spacing: .3px; }
+.recent-pill { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 4px 12px; cursor: pointer; transition: all .15s; }
+.recent-pill:hover { color: var(--accent); border-color: var(--accent); }
+
+.filters { max-width: 900px; margin: 0 auto; padding: 20px 24px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.pill:hover { border-color: var(--accent); color: var(--accent); }
+.pill.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+.terms { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+
+.term-row { border-bottom: 1px solid var(--border); }
+.terms > .term-row:first-child { border-top: 1px solid var(--border); }
+
+.term-header { display: flex; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; user-select: none; }
+.term-name { font-size: 17px; font-weight: 800; letter-spacing: -0.3px; color: var(--text); width: 170px; flex-shrink: 0; transition: color .15s; }
+.term-row:hover .term-name { color: var(--accent); }
+.term-oneliner { font-size: 14px; color: var(--muted); flex: 1; line-height: 1.5; }
+.term-badge { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; flex-shrink: 0; white-space: nowrap; }
+.badge-basics      { background: #dcfce7; color: #166534; }
+.badge-intermediate { background: #fef9c3; color: #854d0e; }
+.badge-advanced    { background: #ede9fe; color: #5b21b6; }
+.term-arrow { font-size: 13px; color: var(--subtle); flex-shrink: 0; transition: transform .2s ease; }
+.term-row.open .term-arrow { transform: rotate(90deg); color: var(--accent); }
+
+.term-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
+.term-row.open .term-body { grid-template-rows: 1fr; }
+.term-body-inner { overflow: hidden; }
+.term-body-text { padding: 0 0 22px 186px; font-size: 15px; color: #444; line-height: 1.85; }
+
+.no-results { padding: 56px 0; text-align: center; font-size: 15px; color: var(--muted); }
+
+footer { border-top: 1px solid var(--border); background: var(--surface); }
+.footer-inner { max-width: 900px; margin: 0 auto; padding: 32px 24px; text-align: center; font-size: 12px; color: var(--muted); }
+
+@media (max-width: 768px) {
+  .header-inner { padding: 0 16px; }
+  nav { display: none; position: absolute; top: 56px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 0; }
+  nav.active { display: flex; }
+  nav a { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .nav-mobile-toggle { display: block; }
+  .hero { padding: 40px 16px 24px; }
+  .hero h1 { font-size: 24px; }
+  .search-wrap { max-width: 100%; }
+  .filters { padding: 16px 16px 12px; gap: 6px; }
+  .terms { padding: 0 16px 60px; }
+  .term-oneliner { font-size: 12px; }
+  .term-name { font-size: 16px; width: 100%; }
+  .term-body-text { padding: 0 0 16px 0; }
+  .footer-inner { padding: 24px 16px; }
+}
+
+@media (max-width: 480px) {
+  .header-inner { padding: 0 12px; }
+  .logo { font-size: 13px; }
+  .hero { padding: 32px 12px 20px; }
+  .hero h1 { font-size: 20px; }
+  .search-wrap { max-width: 100%; }
+  .filters { padding: 12px 12px 8px; gap: 4px; }
+  .terms { padding: 0 12px 40px; }
+  .term-name { font-size: 14px; }
+  .term-oneliner { font-size: 11px; }
+  .term-body-text { font-size: 13px; padding: 0 0 12px 0; }
+  .footer-inner { padding: 20px 12px; font-size: 11px; }
+}
+
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.page-hero { padding: 56px 0 24px; }
+.page-hero h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero p { font-size: 18px; color: var(--muted); }
+.sec { padding: 36px 0; border-top: 1px solid var(--border); }
+.sec h2 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 12px; }
+.sec p { font-size: 16px; margin-bottom: 14px; }
+.sec ul, .sec ol { margin: 0 0 14px 22px; font-size: 16px; }
+.sec li { margin-bottom: 8px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin: 14px 0; }
+.card h3 { font-size: 16px; margin-bottom: 6px; }
+.card p { font-size: 15px; color: var(--muted); margin: 0; }
+.tag { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .two { grid-template-columns: 1fr; } .page-hero h1 { font-size: 32px; } }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.page-hero { padding: 56px 0 24px; }
+.page-hero h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero p { font-size: 18px; color: var(--muted); }
+.tag { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.sec { padding: 32px 0; border-top: 1px solid var(--border); }
+.sec h2 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 12px; }
+.sec p { font-size: 16px; margin-bottom: 14px; }
+.layer { display:flex; gap:16px; background: var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; margin:12px 0; }
+.layer .n { font-size:22px; font-weight:800; color:var(--accent); min-width:34px; }
+.layer h3 { font-size:17px; margin-bottom:4px; }
+.layer p { font-size:15px; color:var(--muted); margin:0; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.card { background: var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+.card h3 { font-size:16px; margin-bottom:6px; }
+.card p, .card li { font-size:15px; color:var(--muted); margin:0 0 6px; }
+.card ul { margin:6px 0 0 18px; }
+.note { font-size:13px; color:var(--muted); border-left:3px solid var(--accent); padding:4px 0 4px 14px; margin-top:28px; }
+@media (max-width:640px){ .two{grid-template-columns:1fr;} .page-hero h1{font-size:32px;} }
+
+/* ===== Shared site header (keep identical on every page) ===== */
+header.site-header { position: sticky; top: 0; z-index: 100; background: var(--surface, #ffffff); border-bottom: 1px solid var(--border, #ebebeb); }
+.site-header .header-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.site-header .logo { font-family: inherit; font-size: 15px; font-weight: 800; letter-spacing: -0.4px; line-height: 1; color: var(--text, #111111); text-decoration: none; white-space: nowrap; }
+.site-header .logo .dot { color: var(--accent, #4f46e5); }
+.site-header nav { display: flex; gap: 22px; align-items: center; }
+.site-header nav a { font-family: inherit; font-size: 13px; font-weight: 500; line-height: 1; color: var(--muted, #666666); text-decoration: none; white-space: nowrap; transition: color .15s; }
+.site-header nav a:hover { color: var(--text, #111111); }
+.site-header nav a.nav-search { font-size: 14px; margin-left: 6px; padding-left: 16px; border-left: 1px solid var(--border, #ebebeb); }
+.site-header .nav-mobile-toggle { display: none; background: none; border: 0; color: var(--muted, #666666); font-size: 20px; line-height: 1; cursor: pointer; padding: 4px; }
+@media (max-width: 1010px) {
+  .site-header .header-inner { height: auto; min-height: 56px; padding: 14px 24px; flex-wrap: wrap; }
+  .site-header .nav-mobile-toggle { display: block; }
+  .site-header nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 14px; padding: 6px 0 6px; }
+  .site-header nav.active, .site-header nav.open { display: flex; }
+  .site-header nav a.nav-search { margin-left: 0; padding-left: 0; border-left: 0; }
+}
+
+/* ===== Style refresh: warm editorial (shared across the site) ===== */
+:root { --bg:#f7f2e8; --surface:#fffdf8; --border:#e4d9c6; --text:#1f1b16; --muted:#6b6154; --subtle:#a39a8a; --accent:#b4532a; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#1a1612; --surface:#241f19; --border:#3a3229; --text:#f3ece0; --muted:#a79c8a; --subtle:#6f6557; --accent:#e08a5f; }
+}
+body { background: var(--bg) !important; color: var(--text); }
+h1, h2, h3 { font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif; font-weight: 500; letter-spacing: -0.01em; }
+h1 { line-height: 1.08; }
+h2 { line-height: 1.2; }
+a { color: var(--accent); }
+.logo, .site-header .logo { font-family: Georgia, 'Iowan Old Style', serif !important; font-weight: 500 !important; font-size: 18px !important; letter-spacing: 0 !important; }
+.site-header { background: color-mix(in srgb, var(--surface) 92%, transparent) !important; backdrop-filter: saturate(1.2) blur(8px); }
+.tag, .label, .hub-cta, .setup-cta, .guide-cta, .resource-tag { letter-spacing: .12em; }
+.hub-card, .setup-card, .guide-card, .card, .layer, .step, .featured, .note-card, .resource-card {
+  border-radius: 14px !important;
+  box-shadow: 0 1px 0 rgba(60,40,20,.04), 0 10px 24px -16px rgba(60,40,20,.28);
+}
+.hub-card:hover, .setup-card:hover, .guide-card:hover, .card:hover, .resource-card:hover { transform: translateY(-2px); transition: transform .2s ease, box-shadow .2s ease; box-shadow: 0 1px 0 rgba(60,40,20,.04), 0 16px 32px -18px rgba(60,40,20,.35); }
+.callout, .note { font-family: Georgia, 'Iowan Old Style', serif; font-size: 17px; }
+.item { border-bottom-color: var(--border) !important; }
+.pill-video { background: #f3e3d4 !important; color: #8a3b17 !important; }
+.pill-article { background: #e6efe0 !important; color: #3d6b2e !important; }
+.pill-case { background: #f6e6cf !important; color: #8a5a12 !important; }
+@media (prefers-color-scheme: dark) {
+  .pill-video { background: #3a2a20 !important; color: #f0b58f !important; }
+  .pill-article { background: #223020 !important; color: #b5d9a4 !important; }
+  .pill-case { background: #3a2d18 !important; color: #f0cc8a !important; }
+}
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.page-hero { padding: 56px 0 24px; }
+.page-hero h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero p { font-size: 18px; color: var(--muted); }
+.tag { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.sec { padding: 32px 0; border-top: 1px solid var(--border); }
+.sec h2 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 12px; }
+.sec p { font-size: 16px; margin-bottom: 14px; }
+.sec ul, .sec ol { margin: 0 0 14px 22px; font-size: 16px; }
+.sec li { margin-bottom: 8px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+.card h3 { font-size: 17px; margin-bottom: 6px; }
+.card p { font-size: 15px; color: var(--muted); margin: 0; }
+.prompt { font-family: ui-monospace, Menlo, monospace; font-size: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin: 10px 0; white-space: pre-wrap; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.note { font-size: 13px; color: var(--muted); border-left: 3px solid var(--border); padding: 4px 0 4px 14px; margin-top: 28px; }
+@media (max-width: 640px) { .compare { grid-template-columns: 1fr; } .page-hero h1 { font-size: 32px; } }
+
+/* ===== AI for your work ===== */
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 8px; }
+.jump a { font-size: 14px; font-weight: 600; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-decoration: none; white-space: nowrap; }
+.jump a:hover { border-color: var(--accent); color: var(--accent); }
+.jump-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 18px 0 6px; }
+.role { scroll-margin-top: 72px; }
+.role .emo { font-size: 30px; line-height: 1; display: block; margin-bottom: 8px; }
+.role h3.sub { font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 22px 0 8px; }
+.pbox { position: relative; margin: 10px 0; }
+.pbox .prompt { margin: 0; padding-right: 76px; }
+.pbox .pname { font-size: 14px; font-weight: 700; margin: 0 0 4px; }
+.copy { position: absolute; top: 30px; right: 8px; font: inherit; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); cursor: pointer; }
+.copy:hover { color: var(--accent); border-color: var(--accent); }
+.watch { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 12px 16px; font-size: 15px; color: var(--muted); margin-top: 14px; }
+.watch b { color: var(--text); }
+.top { font-size: 13px; font-weight: 600; display: inline-block; margin-top: 16px; }
+.cta { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 26px; margin: 36px 0 48px; }
+.cta .k { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.cta .t { font-family: Georgia, 'Iowan Old Style', serif; font-size: 21px; margin-top: 4px; }
+</style>
+<style id="mobile-fixes">
+/* Phones: let form controls shrink inside rows, stop media spilling over, and avoid iOS zoom on focus */
+input, textarea, select, button { min-width: 0; max-width: 100%; }
+img, video, iframe { max-width: 100%; }
+@media (max-width: 640px) { input, textarea, select { font-size: 16px !important; } }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
+    <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav id="nav">
+      <a href="/for-you.html">For you</a>
+      <a href="/llm-explained.html">What is AI?</a>
+      <a href="/jargon.html">Jargon</a>
+      <a href="/compare.html">Tools</a>
+      <a href="/use-cases.html">Use Cases</a>
+      <a href="/setup.html">Setup</a>
+      <a href="/reading.html">Reading</a>
+      <a href="/resources.html">Resources</a>
+      <a href="/paths.html">Paths</a>
+      <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
+      <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap" id="top">
+  <section class="page-hero">
+    <div class="tag">AI for your work</div>
+    <h1>What AI can do for you, and what to ask it</h1>
+    <p>Pick your type of business or your role. Each section has the basics: what AI is good for in your world, prompts you can copy and fill in, and what to watch out for.</p>
+    <div class="jump-label">Your business</div>
+    <div class="jump"><a href="#cafe">☕ Café or restaurant</a><a href="#shop">🛍️ Shop</a><a href="#salon">💇 Salon or beauty</a><a href="#trades">🔧 Trades</a><a href="#office">💼 Office or services</a></div>
+    <div class="jump-label">Your role</div>
+    <div class="jump"><a href="#tech">🧑‍💻 Developers and technical people</a><a href="#pm">📋 Project and programme managers</a><a href="#itdirector">🏛️ IT directors and leaders</a></div>
+  </section>
+
+  <section class="sec">
+    <h2>Before you start</h2>
+    <p>These prompts work in ChatGPT, Claude, Gemini or Copilot. Not sure which to use? See <a href="/compare.html">Which AI tool?</a></p>
+    <ul>
+      <li>Replace everything in [square brackets] with your own details.</li>
+      <li>The first answer is a draft. Ask for changes one at a time: “shorter”, “friendlier”, “drop the last point”.</li>
+      <li>Check anything that matters, such as prices, dates, names and rules.</li>
+      <li>Don't paste passwords, card numbers or other people's private details.</li>
+    </ul>
+    <p>Want the why behind good prompts? Read <a href="/how-to-ask.html">How to ask AI for what you need</a>.</p>
+  </section>
+
+  <section class="sec role" id="cafe">
+    <span class="emo" aria-hidden="true">☕</span>
+    <h2>Café or restaurant</h2>
+    <p>AI won&#x27;t cook or serve, but it can take a lot of the writing and admin off your plate: menus, reviews, rotas and posts.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Write menu descriptions and specials-board wording</li><li>Reply to Google and Tripadvisor reviews in your own voice</li><li>Draft a weekly rota from who&#x27;s free and when you&#x27;re busy</li><li>Turn a photo and a few words into an Instagram or Facebook post</li><li>Write polite emails to suppliers, landlords or the council</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">Specials board</p><div class="prompt">Here are today&#x27;s specials: [list them]. Write one short line for each for our chalkboard. Warm and simple, no more than 10 words each. Don&#x27;t add ingredients I haven&#x27;t listed.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Reply to a review</p><div class="prompt">Here&#x27;s a Google review we got: [paste review]. Write a reply from me, [your name], the owner. Thank them and mention one thing they liked. Under 60 words. If it&#x27;s a complaint, apologise once, don&#x27;t argue, and invite them to email [your email].</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Draft a rota</p><div class="prompt">We&#x27;re open [days and hours]. Lunch from 12 to 2 is our busiest time. Here&#x27;s when each person can work: [first names and availability]. Draft next week&#x27;s rota so there are always at least 2 people on at lunch. Show it as a table and flag any gaps.</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>Always check allergens and prices yourself.</b> AI can get them wrong and sound sure about it. Use first names only for staff, and leave out phone numbers and addresses.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+  <section class="sec role" id="shop">
+    <span class="emo" aria-hidden="true">🛍️</span>
+    <h2>Shop</h2>
+    <p>For a shop, AI is a fast writer and a patient analyst: product descriptions, customer questions, and making sense of your till exports.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Write product descriptions, shelf labels and window signs</li><li>Answer common customer questions for your website or WhatsApp</li><li>Spot your best and slowest sellers from a till or Shopify export</li><li>Plan a week of social posts in one go</li><li>Draft a simple returns or delivery policy in plain English</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">Product description</p><div class="prompt">Write a product description for our website. Product: [name]. Facts: [size, material, colours, price, anything special]. About 60 words, friendly, for people who shop locally. Only use the facts I&#x27;ve given you.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Best and slowest sellers</p><div class="prompt">Here&#x27;s last month&#x27;s sales export: [paste it, or attach the file]. Which 10 items sold best and which 10 barely sold? Show both in a table with units and takings, then suggest one thing to try for the slow ones.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">A week of posts</p><div class="prompt">Plan 5 Instagram posts for next week for a [type of shop] in [town]. One a day, Monday to Friday. For each, give me a caption under 40 words and a simple photo idea I can take on my phone.</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>Check any numbers against your till.</b> AI can misread a spreadsheet, especially if columns are messy. Don't paste customer names, emails or card details.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+  <section class="sec role" id="salon">
+    <span class="emo" aria-hidden="true">💇</span>
+    <h2>Salon or beauty</h2>
+    <p>Most salon admin is writing: reminders, aftercare, replies and captions. AI can draft all of it in your tone, so you spend less time on your phone between clients.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Write booking reminder and follow-up messages</li><li>Turn your notes into a clear aftercare sheet for each treatment</li><li>Reply to reviews quickly and kindly</li><li>Write before-and-after captions for social</li><li>Tidy up your price list and treatment descriptions</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">Booking reminder</p><div class="prompt">Write a friendly text message reminding a client about their appointment. Include placeholders for name, treatment, day and time. Ask them to reply YES to confirm, and mention our [24-hour] cancellation policy. Under 300 characters.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Aftercare sheet</p><div class="prompt">Here are my notes on aftercare for [treatment]: [paste your notes]. Turn them into a one-page aftercare sheet for clients. Short headings, bullet points, friendly tone. Only use what&#x27;s in my notes, and end with &#x27;Any questions, message us on [number].&#x27;</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Captions</p><div class="prompt">I&#x27;ve just done [describe the look] for a client. Write 3 Instagram caption options, each under 30 words, plus 5 hashtags for a salon in [town]. Warm and confident, not salesy.</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>Aftercare and reactions must come from you or the product maker's guidance,</b> not from AI. Ask a client before you share their photo, and keep health notes out of AI tools.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+  <section class="sec role" id="trades">
+    <span class="emo" aria-hidden="true">🔧</span>
+    <h2>Trades</h2>
+    <p>If you&#x27;re on the tools all day, AI is most useful for the paperwork at the end of it: quotes, write-ups and replies, often from a voice note.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Turn rough notes or a voice note into a tidy quote or invoice</li><li>Write up a finished job with photos for the customer</li><li>Reply to enquiries fast, even when you&#x27;re on a job</li><li>Explain a technical problem to a customer in plain English</li><li>Keep checklists for paperwork, certificates and renewals</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">Notes into a quote</p><div class="prompt">Here are my notes from a job visit: [paste notes, or speak them into the app]. Turn them into a quote with a list of work, materials, labour and a total. My day rate is [£] and materials are at cost plus [10]%. Don&#x27;t add any work I haven&#x27;t mentioned.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Quick reply</p><div class="prompt">A customer has messaged: [paste message]. I&#x27;m on a job until 4pm. Write a short, friendly WhatsApp reply saying I&#x27;ll call after 4, and asking for their postcode and a photo of the problem.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Explain it plainly</p><div class="prompt">Explain to a customer, in plain English, why their [boiler / consumer unit / roof] needs [the work]. Two short paragraphs. No jargon and no scare tactics.</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>Regulations and safety are on you.</b> AI is not a source for Building Regs, Gas Safe or wiring rules, so check the official guidance. Read every quote before it goes out.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+  <section class="sec role" id="office">
+    <span class="emo" aria-hidden="true">💼</span>
+    <h2>Office or services</h2>
+    <p>For office work, AI is a first-draft machine and a speed reader. It&#x27;s good at emails, summaries and explaining documents, as long as you check the result.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Draft emails, proposals and letters</li><li>Summarise meetings and long documents (Copilot does this inside Microsoft 365)</li><li>Write the FAQs for your website</li><li>Explain and tidy up spreadsheets and formulas</li><li>Turn a messy process into a simple checklist</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">Reply to an email</p><div class="prompt">Here&#x27;s an email I received: [paste]. Write a reply that [agrees / says no politely / asks for more time]. Keep it under 120 words, friendly but professional, and match the tone of the original.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Summarise a document</p><div class="prompt">Summarise the document below for someone who has 2 minutes. Give me: what it&#x27;s about in one line, the 5 key points, any dates or deadlines, and anything I need to do. Only use what&#x27;s in the document. [paste or attach]</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Explain a spreadsheet</p><div class="prompt">Here&#x27;s a formula from our spreadsheet: [paste formula]. Explain what it does in plain English, step by step, and tell me if there&#x27;s a simpler way to do the same thing.</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>Use the tool your work has approved</b> for anything confidential, such as client files or contracts. If your company has Microsoft 365 Copilot, that's usually the one.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+  <section class="sec role" id="tech">
+    <span class="emo" aria-hidden="true">🧑‍💻</span>
+    <h2>Developers and technical people</h2>
+    <p>AI coding tools now read your codebase, run commands and make changes. Used well, they&#x27;re like a fast junior who never gets tired. You still own every line that ships.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Explain unfamiliar code, logs and stack traces</li><li>Find the likely cause of a bug and suggest the smallest fix</li><li>Write tests, scripts, docs and migration plans</li><li>Review a pull request for bugs, edge cases and security issues</li><li>Run multi-step tasks in your repo with agents like Claude Code, Codex or GitHub Copilot</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">Debug an error</p><div class="prompt">Here&#x27;s a function and the error it throws: [paste code and stack trace]. Explain the most likely cause in 3 bullets, then suggest the smallest fix. Don&#x27;t rewrite unrelated code, and tell me how to confirm the fix.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Write tests</p><div class="prompt">Write unit tests for this function using [pytest / Jest]. Cover normal cases, edge cases and bad input. List any behaviour that looks like a bug rather than writing a test that passes on it. [paste code]</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Learn a codebase</p><div class="prompt">I&#x27;m new to this repo. Trace how a request goes from [entry point] to [the database / external API]. List the files and functions in order, with one line on what each does. Point out anything that looks risky or surprising.</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>Review and test everything before it merges.</b> Never paste secrets, keys or customer data. To go further, see <a href="/setup.html">Setup</a>, <a href="/harness.html">Harness</a> and <a href="/evals.html">Evals</a>.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+  <section class="sec role" id="pm">
+    <span class="emo" aria-hidden="true">📋</span>
+    <h2>Project and programme managers</h2>
+    <p>A lot of delivery work is turning messy inputs into clear outputs: notes into status reports, transcripts into actions, plans into risks. AI is very good at that first pass.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Turn weekly notes into a status report or steering pack</li><li>Pull decisions, actions and owners out of meeting transcripts</li><li>Stress-test a plan for risks, dependencies and assumptions</li><li>Rewrite one update for different audiences: execs, users, suppliers</li><li>Draft RAID logs, charters, lessons learned and cutover checklists</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">Weekly status report</p><div class="prompt">Here are my notes from this week: [paste]. Write a one-page status update for the steering group with: overall RAG and a one-line reason, progress this week, next week, top 3 risks with owners, and decisions needed. Plain English. Don&#x27;t invent dates or owners: mark anything missing as TBC.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Actions from a meeting</p><div class="prompt">Here&#x27;s the meeting transcript: [paste]. List the decisions made, the actions with owner and due date, and the open questions. Only include what was actually said. If an action has no owner, say so.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Stress-test the plan</p><div class="prompt">Here&#x27;s our plan summary: [paste milestones, dependencies, team]. Act as a sceptical programme director. List the 10 risks most likely to hurt us, with likelihood, impact and a mitigation for each, in a table. Then list the 3 assumptions I should check this week.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">One update, three audiences</p><div class="prompt">Rewrite this update three ways: for the CFO (cost, timing, risk in 5 lines), for end users (what changes for them and when), and for our supplier (what we need from them by when). [paste update]</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>RAG status and judgement calls stay with you.</b> AI doesn't know the politics, the history or which dates are real. Only paste programme material into a tool your organisation has approved.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+  <section class="sec role" id="itdirector">
+    <span class="emo" aria-hidden="true">🏛️</span>
+    <h2>IT directors and leaders</h2>
+    <p>Leaders get most value from AI as a thinking partner and a fast drafter: policies, board papers, vendor reviews and deciding which ideas to back.</p>
+    <h3 class="sub">What it can do for you</h3>
+    <ul><li>Draft an AI acceptable use policy and guidance for staff</li><li>Score and prioritise AI ideas from across the business</li><li>Summarise vendor proposals, contracts and RFP responses</li><li>Draft board papers and investment cases, then challenge them</li><li>Prepare for difficult conversations with suppliers or the board</li></ul>
+    <h3 class="sub">Prompts to try</h3>
+    <div class="pbox"><p class="pname">AI use policy</p><div class="prompt">Draft a one-page AI acceptable use policy for a [size] [sector] company in the UK. Cover: approved tools, data that must never be pasted in, when a human must review the output, and who to ask. Plain English, for all staff, not lawyers.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Prioritise AI ideas</p><div class="prompt">Here are the AI ideas my teams have suggested: [list]. Score each from 1 to 5 on value, effort, risk and data readiness, in a table. Recommend 3 to pilot this quarter, say why, and say what would tell us each pilot worked.</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Review a vendor proposal</p><div class="prompt">Summarise this vendor proposal for a board member: what we get, what it costs over 3 years, lock-in and data risks, and the 5 questions we should ask before signing. [paste or attach]</div><button class="copy" type="button">Copy</button></div>
+    <div class="pbox"><p class="pname">Challenge my paper</p><div class="prompt">Here&#x27;s my draft board paper: [paste]. Act as a sceptical non-executive director. What are the 5 hardest questions I&#x27;ll be asked, and where is my case weakest?</div><button class="copy" type="button">Copy</button></div>
+    <div class="watch"><b>Accountability doesn't move to the tool.</b> Check data protection duties (UK GDPR and ICO guidance) and your sector's rules before rolling anything out. See the <a href="/enterprise.html">Enterprise AI Framework</a> for the bigger picture.</div>
+    <a class="top" href="#top">Back to the top ↑</a>
+  </section>
+
+  <a class="cta" href="https://humanagency.co/#o4-contact">
+    <div><div class="k">Want hands-on help?</div><div class="t">We'll show you what's worth doing for your business or team, and set it up with you.</div></div>
+    <div style="font-weight:700;color:var(--accent);white-space:nowrap">Work with us →</div>
+  </a>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>Human Agency. No hype, no theory. Just understanding. © 2026 Human Agency</p>
+  </div>
+</footer>
+<script>
+(function () {
+  var t = document.getElementById("nav-toggle"), n = document.getElementById("nav");
+  if (t && n) t.addEventListener("click", function () { var o = n.classList.toggle("active"); t.setAttribute("aria-expanded", o ? "true" : "false"); });
+  document.querySelectorAll(".pbox .copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var text = b.parentNode.querySelector(".prompt").textContent;
+      var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () { b.textContent = "Select and copy"; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
