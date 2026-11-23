@@ -19,52 +19,68 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
+      <a href="/guide.html">Start here</a>
       <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
+      <a href="/basics.html">Basics</a>
       <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
+      <a href="/paths.html" aria-current="page" style="color:var(--text);font-weight:700">Go deeper</a>
       <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
-      <a href="/search.html" aria-label="Search">🔍</a>
+      <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="crumbs"><a href="/paths.html">Learning paths</a> · Harness · Start here</div>
+  <div class="crumbs"><a href="/paths.html">Go deeper</a> · Harness · Step 1 of 3</div>
   <div class="tag">Harness · Explained</div>
   <h1>What is a harness?</h1>
   <p class="lede">The harness is everything around an AI model that turns it from a chatbot into something that can do a job. The model is the brain. The harness is the rest of the body: eyes, hands, a rulebook, and a way to check its own work.</p>
 
-  <div class="callout"><strong>In one line:</strong> the AI model is the engine. The harness is the car around it: steering, brakes, dashboard and road rules.</div>
+  <div class="callout"><strong>In one line:</strong> Agent = Model + Harness. The model is the engine. The harness is the car around it: steering, brakes, dashboard and road rules.</div>
 
   <h2>A model on its own can only talk</h2>
   <p>Ask a model on its own, "Check whether my order has shipped", and it can only guess, because it cannot look at your orders. Give it a harness with a tool that can read your order system, a rule that says "only report what the system says", and a check that the answer quotes a real order number, and it can actually do the job.</p>
-  <p>Same model. Different harness. Very different results.</p>
+  <p>It's the same for code. A model alone can only write text about a bug. Inside a harness it can read the files, run the tests, see the failures, edit the code and stop when the tests pass. Same model, different system, very different result.</p>
 
-  <h2>The five parts, in plain words</h2>
+  <h2>How we got here</h2>
   <ol class="steps">
-    <li><span class="n">1</span><span><strong>What it knows</strong><span class="d">The information it can see right now: instructions, documents, notes from earlier steps.</span></span></li>
-    <li><span class="n">2</span><span><strong>What it can touch</strong><span class="d">The tools it can use, such as looking up an order, sending an email, or running a calculation.</span></span></li>
-    <li><span class="n">3</span><span><strong>How it plans</strong><span class="d">The steps it takes, in what order, and what it does when one fails.</span></span></li>
-    <li><span class="n">4</span><span><strong>What it is allowed to do</strong><span class="d">Permissions, limits, and a person who must approve anything risky, such as a refund.</span></span></li>
-    <li><span class="n">5</span><span><strong>How you know it works</strong><span class="d">Logs of what it did, checks it runs on its own answers, and evals to measure quality over time.</span></span></li>
+    <li><span class="n">1</span><span><strong>Prompt engineering (2022 to 2024)</strong><span class="d">What you say to the model. "How should I ask?"</span></span></li>
+    <li><span class="n">2</span><span><strong>Context engineering (2025)</strong><span class="d">What the model sees. "What information should it have?"</span></span></li>
+    <li><span class="n">3</span><span><strong>Harness engineering (2026 onwards)</strong><span class="d">The whole system it runs in. "How does it do the job reliably?"</span></span></li>
   </ol>
+  <p>Each layer contains the one before: the prompt sits inside the context, and the context is one part of the harness.</p>
+
+  <h2>The five parts</h2>
+  <p>There's no official list, but most working harnesses have these five. Each answers a question the model can't answer for itself.</p>
+  <ol class="steps">
+    <li><span class="n">1</span><span><strong>Context: what it knows</strong><span class="d">Instructions, documents it can search, notes from earlier steps, and summaries that stop long tasks overflowing.</span></span></li>
+    <li><span class="n">2</span><span><strong>Action: what it can touch</strong><span class="d">Tools such as looking up an order, sending an email, browsing or running code. Clear tool descriptions matter as much as the tools.</span></span></li>
+    <li><span class="n">3</span><span><strong>Orchestration: how it plans</strong><span class="d">The steps, their order, keeping track of progress, handing parts to sub-agents, and what happens when a step fails.</span></span></li>
+    <li><span class="n">4</span><span><strong>Control: what it's allowed to do</strong><span class="d">Permissions, a person approving anything risky such as a refund, a safe sandbox, and limits on time and spend.</span></span></li>
+    <li><span class="n">5</span><span><strong>Feedback: how you know it works</strong><span class="d">Logs of what it did, checks it runs on its own work, and <a href="/what-is-an-eval.html">evals</a> to measure quality over time. Every mistake becomes a new rule, tool or check.</span></span></li>
+  </ol>
+
+  <h2>A quick test for any AI system</h2>
+  <div class="callout">Does it know enough? Can it act? Does it stay on track? Is it safe? Can we show that it works, and that it's getting better?</div>
+  <p>If you can't answer one of these, that's the part of the harness to look at first.</p>
 
   <h2>Why it matters</h2>
   <p>Most AI problems that people blame on the model are harness problems. The model invented a refund policy because nothing told it to look the policy up. It looped for an hour because nothing set a limit. It worked in a demo because nothing checked it on real cases.</p>
-  <p>When something goes wrong with an AI product, ask: is it the model, or is it the harness around it? The fix is often in the harness.</p>
+  <p>When something goes wrong, ask: is it the model, or the harness around it? The fix is often in the harness.</p>
 
   <div class="next">
-    <a href="/what-is-an-eval.html"><span class="label">Previous</span>← What is an eval?</a>
-    <a href="/harness-basics.html"><span class="label">Next</span>Harness basics →</a>
+    <a href="/paths.html"><span class="label">Back</span>Go deeper</a>
+    <a href="/harness-design.html"><span class="label">Next: step 2</span>Designing a harness →</a>
   </div>
 
-  <p class="note">Going deeper: <a href="/harness-basics.html">Harness basics</a>, <a href="/harness-design.html">Designing a harness</a>, <a href="/harness-engineering.html">Harness engineering in practice</a>. For terms, see the <a href="/jargon.html">Jargon Decoder</a>.</p>
+  <h2 style="font-size:17px; margin-top:36px;">Sources</h2>
+  <ul class="sources">
+    <li><a href="https://openai.com/index/harness-engineering" target="_blank" rel="noopener">OpenAI: Harness engineering, leveraging Codex in an agent-first world</a></li>
+    <li><a href="https://addyosmani.com/blog/agent-harness-engineering/" target="_blank" rel="noopener">Addy Osmani: Agent Harness Engineering</a></li>
+    <li><a href="https://atlan.com/know/harness-engineering-vs-prompt-engineering/" target="_blank" rel="noopener">Atlan: Harness vs Prompt vs Context Engineering</a></li>
+  </ul>
+  <p class="note">The five-part breakdown is Human Agency's synthesis, not an official standard. For terms, see the <a href="/jargon.html">Jargon Decoder</a>.</p>
 </main>
 
 <footer>

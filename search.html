@@ -134,15 +134,12 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
+      <a href="/guide.html">Start here</a>
       <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
+      <a href="/basics.html">Basics</a>
       <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
+      <a href="/paths.html">Go deeper</a>
       <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
       <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
@@ -192,10 +189,14 @@ const searchData = [
   { title: "Compare AI Tools", source: "Tools", snippet: "ChatGPT vs Claude vs Gemini: compare up to 3 AI tools side-by-side in plain English. No benchmarks, just what each is actually best for.", url: "/compare.html", type: "page", keywords: ["compare", "chatgpt", "claude", "gemini", "tools"] },
   { title: "Home | Human Agency", source: "Home", snippet: "Learn how AI actually works. No hype. Real use cases for individuals, small businesses and enterprises.", url: "/index.html", type: "page", keywords: ["ai", "learning", "home", "guide"] },
   { title: "AI Jargon Decoder", source: "Glossary", snippet: "58 AI terms. Plain English. No pretence.", url: "/jargon.html", type: "page", keywords: ["jargon", "glossary", "terms", "definitions", "ai"] },
-  { title: "Resources Hub", source: "Resources", snippet: "Official Anthropic resources, courses, community guides, and tools for working with AI agents.", url: "/resources.html", type: "page", keywords: ["resources", "courses", "tools", "documentation", "anthropic"] },
-  { title: "Claude CLI Setup", source: "Setup", snippet: "Step-by-step guide to install and configure Claude CLI with your API key.", url: "/setup-claude.html", type: "page", keywords: ["setup", "claude", "cli", "install", "api", "command line"] },
-  { title: "Claude Code in Your IDE", source: "Setup", snippet: "Set up Claude Code as an extension in VS Code.", url: "/setup-codex.html", type: "page", keywords: ["claude code", "setup", "ide", "vs code", "editor"] },
-  { title: "Getting Started | Setup Guides", source: "Setup", snippet: "Step-by-step guides to install Claude CLI and Claude Code in your IDE.", url: "/setup.html", type: "page", keywords: ["setup", "getting started", "installation", "guides", "beginner"] },
+  { title: "Set up Claude", source: "Setup", snippet: "Get Claude working in about 5 minutes: the desktop app, Claude Code in the terminal, or Claude Code in VS Code.", url: "/setup.html", type: "page", keywords: ["setup", "install", "claude code", "desktop app", "terminal", "cli", "vs code", "ide", "download"] },
+  { title: "AI Basics", source: "Basics", snippet: "Three short reads and a jargon buster: what AI is, how to ask it, and when to use it.", url: "/basics.html", type: "page", keywords: ["basics", "beginner", "start", "introduction", "learn"] },
+  { title: "How to Ask AI for What You Need", source: "Basics", snippet: "The five things to put in any request, a before and after, and how to check the answer.", url: "/how-to-ask.html", type: "page", keywords: ["prompt", "prompting", "ask", "how to ask", "better answers"] },
+  { title: "What is an Eval?", source: "Go deeper", snippet: "How to test AI answers: questions, a pass/fail rule and a score you track. Step 1 of the Evals path.", url: "/what-is-an-eval.html", type: "page", keywords: ["eval", "evals", "evaluation", "testing", "quality", "error analysis", "llm judge"] },
+  { title: "Write Your First Eval", source: "Go deeper", snippet: "Hands-on, in a spreadsheet: pick a job, collect examples, write a pass/fail rule, score it.", url: "/write-your-first-eval.html", type: "page", keywords: ["eval", "first eval", "spreadsheet", "hands-on"] },
+  { title: "Rubrics, Judges and Tools", source: "Go deeper", snippet: "Write pass/fail rubrics, check an AI judge against people, and choose tools like Promptfoo, Braintrust and Langfuse.", url: "/eval-rubrics.html", type: "page", keywords: ["rubric", "judge", "promptfoo", "braintrust", "langfuse", "eval tools"] },
+  { title: "What is a Harness?", source: "Go deeper", snippet: "Everything around the model that turns it into something that can do a job: the five parts and a quick test.", url: "/what-is-a-harness.html", type: "page", keywords: ["harness", "agent", "context", "tools", "orchestration", "harness engineering"] },
+  { title: "Reading, Talks and Free Courses", source: "Reading", snippet: "Talks, articles, free Anthropic courses, official docs and community guides.", url: "/reading.html", type: "page", keywords: ["reading", "videos", "talks", "courses", "docs", "resources"] },
   { title: "AI for Your Work", source: "For you", snippet: "What AI can do and prompts to copy for cafés, shops, salons, trades, offices, developers, project and programme managers, and IT directors.", url: "/for-you.html", type: "page", keywords: ["prompts", "small business", "cafe", "restaurant", "shop", "retail", "salon", "trades", "office", "developer", "project manager", "programme manager", "it director", "role"] },
   { title: "When to Use AI", source: "Use Cases", snippet: "Learn which problems AI solves and which it doesn't. Common use cases and decision framework.", url: "/use-cases.html", type: "page", keywords: ["use cases", "when to use", "applications", "problems", "framework"] },
   { title: "Agent", source: "Glossary", snippet: "AI that takes actions, not just answers. Break complex tasks into steps, execute, and learn.", url: "/jargon.html", type: "heading", keywords: ["agent", "autonomous", "agentic", "actions"] },

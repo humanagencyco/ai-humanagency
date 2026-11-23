@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Paths | Human Agency</title>
+<title>Go Deeper: Evals and Harness Paths | Human Agency</title>
 <meta name="description" content="Two clear paths for people building with AI: how to test AI output with evals, and how to design the harness that makes an AI agent reliable.">
 <link rel="stylesheet" href="/path.css">
 <style id="mobile-fixes">
@@ -19,51 +19,42 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
+      <a href="/guide.html">Start here</a>
       <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
+      <a href="/basics.html">Basics</a>
       <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
+      <a href="/paths.html" aria-current="page" style="color:var(--text);font-weight:700">Go deeper</a>
       <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
-      <a href="/search.html" aria-label="Search">🔍</a>
+      <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="tag">Learning paths</div>
-  <h1>Evals and harnesses, in order</h1>
-  <p class="lede">Two short paths for anyone building with AI. Each one starts with the basics and ends with something you can do on Monday. Read them in order, or jump to the step you need.</p>
+  <div class="tag">Go deeper</div>
+  <h1>Go deeper: for people building with AI</h1>
+  <p class="lede">Two short paths, three steps each, for anyone building or buying AI products. Each step ends with something you can do on Monday.</p>
 
-  <div class="callout"><strong>Not sure which path is for you?</strong> <a href="/guide.html">Get a plan built for your role and your level of AI experience</a>. It takes two minutes.</div>
+  <div class="callout"><strong>Just getting started?</strong> The <a href="/basics.html">Basics</a> and <a href="/for-you.html">AI for your work</a> are a better first stop.</div>
 
-  <h2>Path 1: Evals (how to test AI output)</h2>
-  <p>Work through these in order. Each step builds on the one before.</p>
+  <h2>Path 1: Evals, how to know it works</h2>
   <ol class="steps">
-    <li><span class="n">1</span><span><a href="/what-is-an-eval.html">What is an eval?</a><span class="d">The idea in plain words, with an everyday example.</span></span></li>
+    <li><span class="n">1</span><span><a href="/what-is-an-eval.html">What is an eval?</a><span class="d">The idea in plain words, the two kinds, three ways to mark answers, and why you start by reading real outputs.</span></span></li>
     <li><span class="n">2</span><span><a href="/write-your-first-eval.html">Write your first eval</a><span class="d">Hands-on, in a spreadsheet: pick a job, collect examples, write a pass/fail rule, score it.</span></span></li>
-    <li><span class="n">3</span><span><a href="/eval-basics.html">Evals basics</a><span class="d">The two kinds of eval, and why you start with error analysis on real outputs.</span></span></li>
-    <li><span class="n">4</span><span><a href="/eval-rubrics.html">Writing evals and rubrics</a><span class="d">Turning a failure into a pass/fail judge, and checking that judge against a human.</span></span></li>
-    <li><span class="n">5</span><span><a href="/eval-tools.html">Using tools to build evals</a><span class="d">AI assistants and platforms (Promptfoo, Braintrust, Langfuse) to speed up the work, without handing over the judgement.</span></span></li>
+    <li><span class="n">3</span><span><a href="/eval-rubrics.html">Rubrics, judges and tools</a><span class="d">Sharper pass/fail rules, checking an AI judge against people, and tools like Promptfoo, Braintrust and Langfuse.</span></span></li>
   </ol>
-  <p>Overview page: <a href="/evals.html">AI Evals</a>.</p>
 
-  <h2>Path 2: Harness (how to build the system around the model)</h2>
-  <p>The model is only one part of a working AI product. These three articles cover the rest.</p>
+  <h2>Path 2: Harness, how to make it do the job</h2>
   <ol class="steps">
-    <li><span class="n">1</span><span><a href="/what-is-a-harness.html">What is a harness?</a><span class="d">The idea in plain words, with a simple analogy.</span></span></li>
-    <li><span class="n">2</span><span><a href="/harness-basics.html">Harness basics</a><span class="d">What a harness is, the five parts it is made of, and why the same model can perform very differently.</span></span></li>
-    <li><span class="n">3</span><span><a href="/harness-design.html">Designing a harness</a><span class="d">A step-by-step way to decide what context, tools, permissions and checks an agent needs.</span></span></li>
-    <li><span class="n">4</span><span><a href="/harness-engineering.html">Harness engineering</a><span class="d">The ongoing practice: turn every mistake into a fix in the harness, and keep the system improving.</span></span></li>
+    <li><span class="n">1</span><span><a href="/what-is-a-harness.html">What is a harness?</a><span class="d">Everything around the model: the five parts, and a quick test for any AI system.</span></span></li>
+    <li><span class="n">2</span><span><a href="/harness-design.html">Designing a harness</a><span class="d">Start from the job, then decide what context, tools, permissions and checks it needs.</span></span></li>
+    <li><span class="n">3</span><span><a href="/harness-engineering.html">Harness engineering in practice</a><span class="d">Turn every mistake into a fix in the system, and keep it improving.</span></span></li>
   </ol>
-  <p>Overview page: <a href="/harness.html">Harness Engineering</a>.</p>
+  <p>Evals are how you know the harness works. Short on time? Do step 1 of each.</p>
 
-  <h2>How the two paths connect</h2>
-  <p>Evals are how you know the harness works. Without evals, you are guessing. Without a harness, there is nothing consistent to evaluate. If you only have time for one path, do Evals step 1 and Harness step 1, then pick up the rest.</p>
+  <h2>For leaders</h2>
+  <div class="card"><h3><a href="/enterprise.html">Enterprise AI framework</a></h3><p>The seven layers of an enterprise AI setup, horizontal versus vertical tools, how an agent is built, and retrieval (RAG), on one page.</p></div>
 
   <p class="note">Compiled by Human Agency from the sources listed in each article.</p>
 </main>

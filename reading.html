@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reading List | Human Agency</title>
+<title>Reading, Talks and Free Courses on AI | Human Agency</title>
 <meta name="description" content="Talks, articles and papers on AI, grouped by use case, talks and papers. Each links to its original source.">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -256,6 +256,10 @@ a { color: var(--accent); }
   .yt-grid.is-list .yt-item { grid-template-columns:1fr; }
 }
 .src-tag { font-size:14px; color:var(--muted); font-weight:500; }
+.jumps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.jumps a { font-size: 14px; font-weight: 600; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-decoration: none; }
+.jumps a:hover { border-color: var(--accent); color: var(--accent); }
+section[id] { scroll-margin-top: 72px; }
 </style>
 <style id="mobile-fixes">
 /* Phones: let form controls shrink inside rows, stop media spilling over, and avoid iOS zoom on focus */
@@ -270,15 +274,12 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
+      <a href="/guide.html">Start here</a>
       <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
+      <a href="/basics.html">Basics</a>
       <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
-      <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
+      <a href="/paths.html">Go deeper</a>
+      <a href="/reading.html" aria-current="page" style="color:var(--text);font-weight:700">Reading</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
       <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
@@ -291,17 +292,18 @@ img, video, iframe { max-width: 100%; }
   <section class="page-hero">
     <div class="tag">Reading list</div>
     <h1>Good reading and watching on AI</h1>
-    <p>Talks, articles and papers worth your time, grouped by what they cover. Each link goes to the original source. Titles are as saved.</p>
+    <p>Talks, articles, free courses and official guides worth your time. Each link goes to the original source.</p>
+    <div class="jumps"><a href="#use-cases">📈 Use cases</a><a href="#talks">🎬 Talks</a><a href="#articles">📄 Articles</a><a href="#courses">🎓 Free courses</a><a href="#builders">🛠️ For builders</a></div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="use-cases">
     <h2>Real-world use cases</h2>
     <p>How organisations and people are using AI today, in business.</p>
     <div class="item"><a href="https://hbr.org/2025/04/how-people-are-really-using-gen-ai-in-2025" target="_blank" rel="noopener">How people are really using Gen AI in 2025</a> <span class="src-tag">(Harvard Business Review)</span></div>
     <div class="item"><a href="https://www.bain.com/insights/agentic-ai-in-retail-how-autonomous-shopping-redefining-customer-journey/" target="_blank" rel="noopener">Agentic AI in Retail: How Autonomous Shopping Is Redefining the Customer Journey</a> <span class="src-tag">(Bain & Company)</span></div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="talks">
     <h2>Talks and interviews</h2>
     <p>Long-form conversations with researchers, builders and analysts. Click a video to play it.</p>
     <div class="yt-view" role="group" aria-label="Layout">
@@ -653,11 +655,32 @@ img, video, iframe { max-width: 100%; }
     <div class="item"><a href="https://another-podcast.simplecast.com/episodes/the-ai-presentation-m4UyqLa5" target="_blank" rel="noopener">Benedict Evans 2025 (the AI presentation)</a></div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="articles">
     <h2>Articles and papers</h2>
     <p>Written pieces for going deeper.</p>
     <div class="item"><a href="https://www.ben-evans.com/benedictevans/2018/06/22/ways-to-think-about-machine-learning-8nefy" target="_blank" rel="noopener">Ways to think about machine learning (Benedict Evans, 2018)</a> <span class="src-tag">(Article or paper)</span></div>
     <div class="item"><a href="https://arxiv.org/pdf/2501.09223" target="_blank" rel="noopener">Foundations of Large Language Models (arXiv paper)</a> <span class="src-tag">(Article or paper)</span></div>
+  </section>
+
+  <section class="sec" id="courses">
+    <h2>Free courses</h2>
+    <p>Official training you can do at your own pace.</p>
+    <div class="item"><a href="https://anthropic.skilljar.com" target="_blank" rel="noopener">Anthropic Academy: free courses on prompting, the API and Claude Code</a> <span class="src-tag">(Anthropic)</span></div>
+    <div class="item"><a href="https://anthropic.skilljar.com/claude-code-101" target="_blank" rel="noopener">Claude Code 101</a> <span class="src-tag">(Anthropic Academy)</span></div>
+    <div class="item"><a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank" rel="noopener">Claude Code in Action</a> <span class="src-tag">(Anthropic Academy)</span></div>
+    <div class="item"><a href="https://github.com/anthropics/prompt-eng-interactive-tutorial" target="_blank" rel="noopener">Interactive prompt engineering tutorial</a> <span class="src-tag">(Anthropic on GitHub)</span></div>
+  </section>
+
+  <section class="sec" id="builders">
+    <h2>For builders</h2>
+    <p>Official docs and community guides for when you're building with AI.</p>
+    <div class="item"><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Prompt engineering guide</a> <span class="src-tag">(Anthropic docs)</span></div>
+    <div class="item"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">Claude Code documentation</a> <span class="src-tag">(Anthropic docs)</span></div>
+    <div class="item"><a href="https://platform.claude.com/docs/en/overview" target="_blank" rel="noopener">Claude API documentation</a> <span class="src-tag">(Anthropic docs)</span></div>
+    <div class="item"><a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener">Connecting tools with MCP (Model Context Protocol)</a> <span class="src-tag">(Anthropic docs)</span></div>
+    <div class="item"><a href="https://github.com/anthropics" target="_blank" rel="noopener">Official examples and sample code</a> <span class="src-tag">(Anthropic on GitHub)</span></div>
+    <div class="item"><a href="https://github.com/hesreallyhim/awesome-claude-code" target="_blank" rel="noopener">Awesome Claude Code: scripts, skills and plugins</a> <span class="src-tag">(Community)</span></div>
+    <div class="item"><a href="https://github.com/FlorianBruniaux/claude-code-ultimate-guide" target="_blank" rel="noopener">Claude Code Ultimate Guide</a> <span class="src-tag">(Community)</span></div>
   </section>
 
   <section class="sec">

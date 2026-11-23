@@ -19,23 +19,20 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
+      <a href="/guide.html">Start here</a>
       <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
+      <a href="/basics.html">Basics</a>
       <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
+      <a href="/paths.html" aria-current="page" style="color:var(--text);font-weight:700">Go deeper</a>
       <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
-      <a href="/search.html" aria-label="Search">🔍</a>
+      <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="crumbs"><a href="/paths.html">Learning paths</a> · Evals · Start here</div>
+  <div class="crumbs"><a href="/paths.html">Go deeper</a> · Evals · Step 1 of 3</div>
   <div class="tag">Evals · Explained</div>
   <h1>What is an eval?</h1>
   <p class="lede">An eval is a test you run on an AI system to check whether its answers are good enough. It is the AI version of a school exam: the same questions, marked the same way, so you can see whether things are getting better or worse.</p>
@@ -44,37 +41,75 @@ img, video, iframe { max-width: 100%; }
 
   <h2>Why AI needs evals</h2>
   <p>A normal calculator gives the same answer to 2 + 2 every time, so you can check it once and trust it. An AI can answer the same question in different words each time, and some of those answers are wrong in subtle ways. You cannot check it once and forget it.</p>
-  <p>Evals are how you keep checking, in a consistent way, as you change the prompt, the model, or the product.</p>
+  <p>Evals are how you keep checking, in a consistent way, as you change the prompt, the model, or the product. Quality becomes a score you track, not a green tick you get once.</p>
 
   <h2>An everyday example</h2>
   <p>Suppose you run a small online shop and use AI to answer customer emails about delivery.</p>
-  <div class="card"><ul>
-    <li><strong>The questions:</strong> 30 real emails from the past month, such as "Where is my parcel?" and "Can I change my address after ordering?"</li>
-    <li><strong>The marking rule:</strong> each reply passes only if it gives the correct delivery time from the policy, and does not promise a refund that the policy does not allow.</li>
-    <li><strong>The score:</strong> 24 of 30 pass, so 80%.</li>
-  </ul></div>
+  <div class="card">
+    <ul>
+      <li><strong>The questions:</strong> 30 real emails from the past month, such as "Where is my parcel?" and "Can I change my address after ordering?"</li>
+      <li><strong>The marking rule:</strong> each reply passes only if it gives the correct delivery time from the policy, and does not promise a refund that the policy does not allow.</li>
+      <li><strong>The score:</strong> 24 of 30 pass, so 80%.</li>
+    </ul>
+  </div>
   <p>Next month you change the prompt. You run the same 30 emails again. If the score goes to 90%, the change helped. If it drops to 60%, you know to undo it, and you know why.</p>
 
   <h2>The three parts of every eval</h2>
   <ol class="steps">
-    <li><span class="n">1</span><span><strong>Questions</strong><span class="d">Realistic inputs. Start with 20 to 50.</span></span></li>
-    <li><span class="n">2</span><span><strong>Marking</strong><span class="d">A rule that says pass or fail for each answer. It can be a simple code check, or a rule that another AI or a person applies.</span></span></li>
+    <li><span class="n">1</span><span><strong>Questions</strong><span class="d">Realistic inputs. Start with 20 to 50, taken from real use where you can.</span></span></li>
+    <li><span class="n">2</span><span><strong>Marking</strong><span class="d">A rule that says pass or fail for each answer.</span></span></li>
     <li><span class="n">3</span><span><strong>Score</strong><span class="d">The percentage that passed. Track it over time.</span></span></li>
   </ol>
+
+  <h2>Two kinds of eval</h2>
+  <div class="two">
+    <div class="card"><h3>Model evals</h3><p>Public tests and leaderboards, such as MMLU or SWE-bench. They help you shortlist 2 or 3 models. They say little about your own use.</p></div>
+    <div class="card"><h3>Product evals</h3><p>Your own tests, built from your own requests and failures. They tell you whether your product actually works for your users. This is where the real work is.</p></div>
+  </div>
+
+  <h2>Three ways to mark an answer</h2>
+  <ol class="steps">
+    <li><span class="n">1</span><span><strong>Code checks</strong><span class="d">For hard rules: valid format, required fields, length, banned words. Fast, cheap and always consistent. Code can't judge meaning, though.</span></span></li>
+    <li><span class="n">2</span><span><strong>An AI judge</strong><span class="d">A second model marks each answer against a written rule, for things like tone or sticking to the facts. Fast at scale, but it can be wrong too, so check it against people.</span></span></li>
+    <li><span class="n">3</span><span><strong>People</strong><span class="d">Someone who knows the subject marks a sample by hand. Slow, but it's how you decide what "good" means in the first place.</span></span></li>
+  </ol>
+  <p>Most teams use all three: code for the rules, a judge for quality, people to set and recheck the standard.</p>
+
+  <h2>Start by reading real answers</h2>
+  <p>The most common mistake is to pick a score, such as "helpfulness out of 5", before you know what goes wrong. The method that works, as taught by Hamel Husain and Shreya Shankar:</p>
+  <ol class="steps">
+    <li><span class="n">1</span><span><strong>Collect real examples.</strong><span class="d">Record what the system did, not only the final answer.</span></span></li>
+    <li><span class="n">2</span><span><strong>Note the first thing that went wrong in each.</strong><span class="d">One short note each, such as "invented a refund policy" or "ignored the postcode".</span></span></li>
+    <li><span class="n">3</span><span><strong>Group the notes and count them.</strong><span class="d">Each group is a failure mode. The biggest one is where to start.</span></span></li>
+    <li><span class="n">4</span><span><strong>Write one eval per failure mode you care about.</strong><span class="d">Step 3 shows how to write the marking rule well.</span></span></li>
+  </ol>
+  <p>Reading 30 real outputs by hand usually teaches you more than a week of picking metrics.</p>
+
+  <h2>The eval loop</h2>
+  <pre><code>Read real answers → name the failures → write an eval for each
+     ↑                                             ↓
+Change the prompt, tools or model  ←  Run the evals, see what breaks</code></pre>
+  <p>Every new failure you find in real use becomes a permanent test. That's how yesterday's problems stop coming back.</p>
 
   <h2>What an eval is not</h2>
   <ul>
     <li><strong>Not a one-off check.</strong> You run it again after every change.</li>
     <li><strong>Not a vibe.</strong> "It seems better" is not an eval. A written pass/fail rule is.</li>
-    <li><strong>Not a public leaderboard.</strong> Public benchmarks help choose a model. Your own evals tell you whether your product works.</li>
+    <li><strong>Not a public leaderboard.</strong> Those help choose a model. Your own evals tell you whether your product works.</li>
   </ul>
 
   <div class="next">
-    <a href="/paths.html"><span class="label">Back</span>Learning paths</a>
-    <a href="/what-is-a-harness.html"><span class="label">Next</span>What is a harness? →</a>
+    <a href="/paths.html"><span class="label">Back</span>Go deeper</a>
+    <a href="/write-your-first-eval.html"><span class="label">Next: step 2</span>Write your first eval →</a>
   </div>
 
-  <p class="note">Want to try one yourself? <a href="/write-your-first-eval.html">Write your first eval in six steps</a>. For terms, see the <a href="/jargon.html">Jargon Decoder</a>.</p>
+  <h2 style="font-size:17px; margin-top:36px;">Sources</h2>
+  <ul class="sources">
+    <li><a href="https://www.lennysnewsletter.com/p/evals-error-analysis-and-better-prompts" target="_blank" rel="noopener">Hamel Husain and Shreya Shankar on evals, error analysis and better prompts (Lenny's Newsletter)</a></li>
+    <li><a href="https://hamel.dev" target="_blank" rel="noopener">Hamel Husain's writing on evals and AI products</a></li>
+    <li><a href="https://arize.com/docs/ax/evaluate/evaluators/llm-as-a-judge" target="_blank" rel="noopener">Arize: LLM as a judge</a></li>
+  </ul>
+  <p class="note">For terms, see the <a href="/jargon.html">Jargon Decoder</a>.</p>
 </main>
 
 <footer>

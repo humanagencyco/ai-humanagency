@@ -2,92 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evals Basics | Human Agency</title>
-<meta name="description" content="Evals basics: why AI output needs testing, model evals versus product evals, and why you start with error analysis on real outputs.">
-<link rel="stylesheet" href="/path.css">
-<style id="mobile-fixes">
-/* Phones: let form controls shrink inside rows, stop media spilling over, and avoid iOS zoom on focus */
-input, textarea, select, button { min-width: 0; max-width: 100%; }
-img, video, iframe { max-width: 100%; }
-@media (max-width: 640px) { input, textarea, select { font-size: 16px !important; } }
-</style>
+<title>Moved | Human Agency</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://ai.humanagency.co/what-is-an-eval.html">
+<meta http-equiv="refresh" content="0; url=/what-is-an-eval.html">
+<script>location.replace("/what-is-an-eval.html" + location.hash);</script>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
-    <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-    <nav id="nav">
-      <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
-      <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
-      <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
-      <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
-      <a href="/search.html" aria-label="Search">🔍</a>
-    </nav>
-  </div>
-</header>
-
-<main class="wrap">
-  <div class="crumbs"><a href="/paths.html">Learning paths</a> · Evals · Step 1 of 3</div>
-  <div class="tag">Evals · Basics</div>
-  <h1>Evals basics</h1>
-  <p class="lede">An eval is a repeatable test for software whose answers change every time. This article explains what that means, the two kinds of eval, and the habit that makes the rest work.</p>
-
-  <div class="callout"><strong>In one line:</strong> you cannot test AI output with a fixed expected answer. Instead, look at real outputs, name the ways they go wrong, and score each failure with a check you can repeat.</div>
-
-  <h2>Start with error analysis, not with a metric</h2>
-  <p>The most common mistake is to pick a score (helpfulness out of 5, say) before you know what goes wrong. Scores like that hide the problems and drift over time.</p>
-  <p>The method that works, as taught by Hamel Husain and Shreya Shankar, goes like this:</p>
-  <ol class="steps">
-    <li><span class="n">1</span><span><strong>Collect real traces.</strong><span class="d">Use real or realistic inputs and record what the system did, not only the final answer.</span></span></li>
-    <li><span class="n">2</span><span><strong>Read them and note the first thing that went wrong.</strong><span class="d">One short note per trace, such as "invented a refund policy" or "ignored the user's postcode".</span></span></li>
-    <li><span class="n">3</span><span><strong>Group the notes into failure modes.</strong><span class="d">Cluster similar notes into named categories. Count them. The biggest category is where to start.</span></span></li>
-    <li><span class="n">4</span><span><strong>Write one eval per failure mode you care about.</strong><span class="d">Next article: how to do that well with rubrics.</span></span></li>
-  </ol>
-  <p>Reading 30 real outputs by hand usually teaches you more than a week of picking metrics. Do this before you buy any tool.</p>
-
-  <h2>The eval loop</h2>
-  <p>Evals are not a one-off. They run as a cycle:</p>
-  <pre><code>Look at real outputs → name the failures → write an eval for each
-      ↑                                              ↓
-Change the prompt, tools or context  ←  Run evals, see what breaks</code></pre>
-  <p>Each time you change the product, run the same evals again. A score that goes down is the signal to look at the traces, not to argue with the score.</p>
-
-  <div class="next">
-    <a href="/paths.html"><span class="label">Back</span>Learning paths</a>
-    <a href="/eval-rubrics.html"><span class="label">Next</span>Writing evals and rubrics →</a>
-  </div>
-
-  <h2 style="font-size:17px; margin-top:36px;">Sources</h2>
-  <ul class="sources">
-    <li><a href="https://www.lennysnewsletter.com/p/evals-error-analysis-and-better-prompts" target="_blank" rel="noopener">Hamel Husain and Shreya Shankar on evals, error analysis and better prompts (Lenny's Newsletter)</a></li>
-    <li><a href="https://hamel.dev" target="_blank" rel="noopener">Hamel Husain's writing on evals and AI products</a></li>
-  </ul>
-
-  <p class="note">Compiled by Human Agency from the sources listed. For terms, see the <a href="/jargon.html">Jargon Decoder</a>. Overview: <a href="/evals.html">AI Evals</a>.</p>
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <p>Human Agency. No hype, no theory. Just understanding. © 2026 Human Agency</p>
-  </div>
-</footer>
-<script>
-(function () {
-  var t = document.getElementById('nav-toggle'), n = document.getElementById('nav');
-  if (!t || !n) return;
-  t.addEventListener('click', function () {
-    var open = n.classList.toggle('open');
-    t.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-})();
-</script>
+<p>This page has moved to <a href="/what-is-an-eval.html">/what-is-an-eval.html</a>.</p>
 </body>
 </html>

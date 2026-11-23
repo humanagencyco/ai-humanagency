@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI for Your Work: What It Can Do and Prompts to Try | Human Agency</title>
-<meta name="description" content="Plain-English AI basics for cafés, shops, salons, trades, offices, developers, project and programme managers, and IT directors: what AI can do for you, and prompts you can copy.">
+<title>AI for Your Work: Prompts by Business and Role | Human Agency</title>
+<meta name="description" content="Pick your business or role, fill in a few boxes, and get a ready-to-use AI prompt. For cafés, shops, salons, trades, offices, developers, project managers and IT directors.">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -236,25 +236,51 @@ a { color: var(--accent); }
 .note { font-size: 13px; color: var(--muted); border-left: 3px solid var(--border); padding: 4px 0 4px 14px; margin-top: 28px; }
 @media (max-width: 640px) { .compare { grid-template-columns: 1fr; } .page-hero h1 { font-size: 32px; } }
 
-/* ===== AI for your work ===== */
-.jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 8px; }
-.jump a { font-size: 14px; font-weight: 600; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-decoration: none; white-space: nowrap; }
-.jump a:hover { border-color: var(--accent); color: var(--accent); }
-.jump-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 18px 0 6px; }
+/* ===== For you: prompt builder ===== */
+.pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 8px 0 4px; }
+.pick a { display: flex; flex-direction: column; gap: 6px; padding: 14px 14px 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; line-height: 1.3; transition: transform .15s, border-color .15s, box-shadow .15s; }
+.pick a .em { font-size: 26px; line-height: 1; }
+.pick a:hover { border-color: var(--accent); transform: translateY(-2px); }
+.pick a[aria-current="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
+.pick-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 22px 0 4px; }
+.hint { color: var(--muted); font-size: 15px; margin-top: 18px; }
 .role { scroll-margin-top: 72px; }
-.role .emo { font-size: 30px; line-height: 1; display: block; margin-bottom: 8px; }
-.role h3.sub { font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 22px 0 8px; }
-.pbox { position: relative; margin: 10px 0; }
-.pbox .prompt { margin: 0; padding-right: 76px; }
-.pbox .pname { font-size: 14px; font-weight: 700; margin: 0 0 4px; }
-.copy { position: absolute; top: 30px; right: 8px; font: inherit; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); cursor: pointer; }
-.copy:hover { color: var(--accent); border-color: var(--accent); }
-.watch { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 12px 16px; font-size: 15px; color: var(--muted); margin-top: 14px; }
+.role-head { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
+.role-head .em { font-size: 40px; line-height: 1; }
+.role-head h2 { margin: 0; }
+.cando { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px !important; padding: 0; list-style: none; }
+.cando li { margin: 0; font-size: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 6px 12px; }
+.sub { font-family: inherit !important; font-size: 12px; font-weight: 700 !important; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 26px 0 10px; }
+.pcard { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; margin: 12px 0; overflow: hidden; }
+.pcard summary { list-style: none; cursor: pointer; padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-weight: 700; font-size: 16px; }
+.pcard summary::-webkit-details-marker { display: none; }
+.pcard summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--accent); line-height: 1; }
+.pcard[open] summary::after { content: "−"; }
+.pcard .inner { padding: 0 18px 18px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; margin-bottom: 12px; }
+.fields label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.fields label.wide { grid-column: 1 / -1; }
+.fields input, .fields textarea, .fields select { font: inherit; font-size: 15px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px; width: 100%; }
+.fields textarea { min-height: 76px; resize: vertical; }
+.fields input:focus, .fields textarea:focus, .fields select:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.prompt { font-family: ui-monospace, Menlo, monospace; font-size: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin: 0; white-space: pre-wrap; line-height: 1.6; }
+.prompt .gap { color: var(--accent); font-weight: 700; }
+.prompt .fill { background: color-mix(in srgb, var(--accent) 14%, transparent); border-radius: 4px; padding: 0 2px; }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
+.acts button, .acts a { font: inherit; font-size: 14px; font-weight: 700; padding: 9px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; text-decoration: none; }
+.acts .primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.acts button:hover, .acts a:hover { border-color: var(--accent); }
+.acts .left { font-size: 13px; color: var(--muted); margin-left: auto; }
+.watch { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 12px 16px; font-size: 15px; color: var(--muted); margin-top: 18px; }
 .watch b { color: var(--text); }
-.top { font-size: 13px; font-weight: 600; display: inline-block; margin-top: 16px; }
+.tips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.tips div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; font-size: 14px; color: var(--muted); }
+.tips b { display: block; color: var(--text); font-size: 15px; margin-bottom: 2px; }
 .cta { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 26px; margin: 36px 0 48px; }
 .cta .k { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
 .cta .t { font-family: Georgia, 'Iowan Old Style', serif; font-size: 21px; margin-top: 4px; }
+.js .role[hidden] { display: none; }
+@media (max-width: 640px) { .fields, .tips { grid-template-columns: 1fr; } .pick { grid-template-columns: 1fr 1fr; } .acts .left { margin-left: 0; width: 100%; } }
 </style>
 <style id="mobile-fixes">
 /* Phones: let form controls shrink inside rows, stop media spilling over, and avoid iOS zoom on focus */
@@ -269,15 +295,12 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
-      <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
+      <a href="/guide.html">Start here</a>
+      <a href="/for-you.html" aria-current="page" style="color:var(--text);font-weight:700">For you</a>
+      <a href="/basics.html">Basics</a>
       <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
+      <a href="/paths.html">Go deeper</a>
       <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
       <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
@@ -286,131 +309,115 @@ img, video, iframe { max-width: 100%; }
 <main class="wrap" id="top">
   <section class="page-hero">
     <div class="tag">AI for your work</div>
-    <h1>What AI can do for you, and what to ask it</h1>
-    <p>Pick your type of business or your role. Each section has the basics: what AI is good for in your world, prompts you can copy and fill in, and what to watch out for.</p>
-    <div class="jump-label">Your business</div>
-    <div class="jump"><a href="#cafe">☕ Café or restaurant</a><a href="#shop">🛍️ Shop</a><a href="#salon">💇 Salon or beauty</a><a href="#trades">🔧 Trades</a><a href="#office">💼 Office or services</a></div>
-    <div class="jump-label">Your role</div>
-    <div class="jump"><a href="#tech">🧑‍💻 Developers and technical people</a><a href="#pm">📋 Project and programme managers</a><a href="#itdirector">🏛️ IT directors and leaders</a></div>
-  </section>
-
-  <section class="sec">
-    <h2>Before you start</h2>
-    <p>These prompts work in ChatGPT, Claude, Gemini or Copilot. Not sure which to use? See <a href="/compare.html">Which AI tool?</a></p>
-    <ul>
-      <li>Replace everything in [square brackets] with your own details.</li>
-      <li>The first answer is a draft. Ask for changes one at a time: “shorter”, “friendlier”, “drop the last point”.</li>
-      <li>Check anything that matters, such as prices, dates, names and rules.</li>
-      <li>Don't paste passwords, card numbers or other people's private details.</li>
-    </ul>
-    <p>Want the why behind good prompts? Read <a href="/how-to-ask.html">How to ask AI for what you need</a>.</p>
+    <h1>Get a ready-to-use AI prompt for your work</h1>
+    <p>Pick your business or role. Fill in a few boxes and the prompt writes itself. Then copy it, or open it straight in ChatGPT or Claude.</p>
+    <div class="pick-label">Your business</div>
+    <div class="pick"><a href="#cafe" data-role="cafe"><span class="em" aria-hidden="true">☕</span>Café or restaurant</a><a href="#shop" data-role="shop"><span class="em" aria-hidden="true">🛍️</span>Shop</a><a href="#salon" data-role="salon"><span class="em" aria-hidden="true">💇</span>Salon or beauty</a><a href="#trades" data-role="trades"><span class="em" aria-hidden="true">🔧</span>Trades</a><a href="#office" data-role="office"><span class="em" aria-hidden="true">💼</span>Office or services</a></div>
+    <div class="pick-label">Your role</div>
+    <div class="pick"><a href="#tech" data-role="tech"><span class="em" aria-hidden="true">🧑‍💻</span>Developers and technical people</a><a href="#pm" data-role="pm"><span class="em" aria-hidden="true">📋</span>Project and programme managers</a><a href="#itdirector" data-role="itdirector"><span class="em" aria-hidden="true">🏛️</span>IT directors and leaders</a></div>
+    <p class="hint" id="hint">👆 Pick one to see what AI can help with, and prompts to try.</p>
   </section>
 
   <section class="sec role" id="cafe">
-    <span class="emo" aria-hidden="true">☕</span>
-    <h2>Café or restaurant</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">☕</span><h2>Café or restaurant</h2></div>
     <p>AI won&#x27;t cook or serve, but it can take a lot of the writing and admin off your plate: menus, reviews, rotas and posts.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Write menu descriptions and specials-board wording</li><li>Reply to Google and Tripadvisor reviews in your own voice</li><li>Draft a weekly rota from who&#x27;s free and when you&#x27;re busy</li><li>Turn a photo and a few words into an Instagram or Facebook post</li><li>Write polite emails to suppliers, landlords or the council</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">Specials board</p><div class="prompt">Here are today&#x27;s specials: [list them]. Write one short line for each for our chalkboard. Warm and simple, no more than 10 words each. Don&#x27;t add ingredients I haven&#x27;t listed.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Reply to a review</p><div class="prompt">Here&#x27;s a Google review we got: [paste review]. Write a reply from me, [your name], the owner. Thank them and mention one thing they liked. Under 60 words. If it&#x27;s a complaint, apologise once, don&#x27;t argue, and invite them to email [your email].</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Draft a rota</p><div class="prompt">We&#x27;re open [days and hours]. Lunch from 12 to 2 is our busiest time. Here&#x27;s when each person can work: [first names and availability]. Draft next week&#x27;s rota so there are always at least 2 people on at lunch. Show it as a table and flag any gaps.</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>Always check allergens and prices yourself.</b> AI can get them wrong and sound sure about it. Use first names only for staff, and leave out phone numbers and addresses.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Write menu descriptions and specials-board wording</li><li>Reply to Google and Tripadvisor reviews in your own voice</li><li>Draft a weekly rota from who&#x27;s free and when you&#x27;re busy</li><li>Turn a photo and a few words into an Instagram or Facebook post</li><li>Write polite emails to suppliers, landlords or the council</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>Specials board</summary><div class="inner"><div class="fields"></div><div class="prompt">Here are today&#x27;s specials: [today&#x27;s specials]. Write one short line for each for our chalkboard. Warm and simple, no more than 10 words each. Don&#x27;t add ingredients I haven&#x27;t listed.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Reply to a review</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s a Google review we got: [paste review]. Write a reply from me, [your name], the owner. Thank them and mention one thing they liked. Under 60 words. If it&#x27;s a complaint, apologise once, don&#x27;t argue, and invite them to email [your email].</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Draft a rota</summary><div class="inner"><div class="fields"></div><div class="prompt">We&#x27;re open [days and hours]. Lunch from 12 to 2 is our busiest time. Here&#x27;s when each person can work: [first names and availability]. Draft next week&#x27;s rota so there are always at least 2 people on at lunch. Show it as a table and flag any gaps.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>Always check allergens and prices yourself.</b> AI can get them wrong and sound sure about it. Use first names only for staff, and leave out phone numbers and addresses.</div>
   </section>
   <section class="sec role" id="shop">
-    <span class="emo" aria-hidden="true">🛍️</span>
-    <h2>Shop</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">🛍️</span><h2>Shop</h2></div>
     <p>For a shop, AI is a fast writer and a patient analyst: product descriptions, customer questions, and making sense of your till exports.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Write product descriptions, shelf labels and window signs</li><li>Answer common customer questions for your website or WhatsApp</li><li>Spot your best and slowest sellers from a till or Shopify export</li><li>Plan a week of social posts in one go</li><li>Draft a simple returns or delivery policy in plain English</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">Product description</p><div class="prompt">Write a product description for our website. Product: [name]. Facts: [size, material, colours, price, anything special]. About 60 words, friendly, for people who shop locally. Only use the facts I&#x27;ve given you.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Best and slowest sellers</p><div class="prompt">Here&#x27;s last month&#x27;s sales export: [paste it, or attach the file]. Which 10 items sold best and which 10 barely sold? Show both in a table with units and takings, then suggest one thing to try for the slow ones.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">A week of posts</p><div class="prompt">Plan 5 Instagram posts for next week for a [type of shop] in [town]. One a day, Monday to Friday. For each, give me a caption under 40 words and a simple photo idea I can take on my phone.</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>Check any numbers against your till.</b> AI can misread a spreadsheet, especially if columns are messy. Don't paste customer names, emails or card details.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Write product descriptions, shelf labels and window signs</li><li>Answer common customer questions for your website or WhatsApp</li><li>Spot your best and slowest sellers from a till or Shopify export</li><li>Plan a week of social posts in one go</li><li>Draft a simple returns or delivery policy in plain English</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>Product description</summary><div class="inner"><div class="fields"></div><div class="prompt">Write a product description for our website. Product: [product name]. Facts: [size, material, colours, price, anything special]. About 60 words, friendly, for people who shop locally. Only use the facts I&#x27;ve given you.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Best and slowest sellers</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s last month&#x27;s sales export: [paste your sales export]. Which 10 items sold best and which 10 barely sold? Show both in a table with units and takings, then suggest one thing to try for the slow ones.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>A week of posts</summary><div class="inner"><div class="fields"></div><div class="prompt">Plan 5 Instagram posts for next week for a [type of shop] in [town]. One a day, Monday to Friday. For each, give me a caption under 40 words and a simple photo idea I can take on my phone.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>Check any numbers against your till.</b> AI can misread a spreadsheet, especially if columns are messy. Don't paste customer names, emails or card details.</div>
   </section>
   <section class="sec role" id="salon">
-    <span class="emo" aria-hidden="true">💇</span>
-    <h2>Salon or beauty</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">💇</span><h2>Salon or beauty</h2></div>
     <p>Most salon admin is writing: reminders, aftercare, replies and captions. AI can draft all of it in your tone, so you spend less time on your phone between clients.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Write booking reminder and follow-up messages</li><li>Turn your notes into a clear aftercare sheet for each treatment</li><li>Reply to reviews quickly and kindly</li><li>Write before-and-after captions for social</li><li>Tidy up your price list and treatment descriptions</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">Booking reminder</p><div class="prompt">Write a friendly text message reminding a client about their appointment. Include placeholders for name, treatment, day and time. Ask them to reply YES to confirm, and mention our [24-hour] cancellation policy. Under 300 characters.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Aftercare sheet</p><div class="prompt">Here are my notes on aftercare for [treatment]: [paste your notes]. Turn them into a one-page aftercare sheet for clients. Short headings, bullet points, friendly tone. Only use what&#x27;s in my notes, and end with &#x27;Any questions, message us on [number].&#x27;</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Captions</p><div class="prompt">I&#x27;ve just done [describe the look] for a client. Write 3 Instagram caption options, each under 30 words, plus 5 hashtags for a salon in [town]. Warm and confident, not salesy.</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>Aftercare and reactions must come from you or the product maker's guidance,</b> not from AI. Ask a client before you share their photo, and keep health notes out of AI tools.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Write booking reminder and follow-up messages</li><li>Turn your notes into a clear aftercare sheet for each treatment</li><li>Reply to reviews quickly and kindly</li><li>Write before-and-after captions for social</li><li>Tidy up your price list and treatment descriptions</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>Booking reminder</summary><div class="inner"><div class="fields"></div><div class="prompt">Write a friendly text message reminding a client about their appointment. Include placeholders for name, treatment, day and time. Ask them to reply YES to confirm, and mention our [cancellation notice=24-hour] cancellation policy. Under 300 characters.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Aftercare sheet</summary><div class="inner"><div class="fields"></div><div class="prompt">Here are my notes on aftercare for [treatment]: [paste your notes]. Turn them into a one-page aftercare sheet for clients. Short headings, bullet points, friendly tone. Only use what&#x27;s in my notes, and end with &#x27;Any questions, message us on [your phone number].&#x27;</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Captions</summary><div class="inner"><div class="fields"></div><div class="prompt">I&#x27;ve just done [describe the look] for a client. Write 3 Instagram caption options, each under 30 words, plus 5 hashtags for a salon in [town]. Warm and confident, not salesy.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>Aftercare and reactions must come from you or the product maker's guidance,</b> not from AI. Ask a client before you share their photo, and keep health notes out of AI tools.</div>
   </section>
   <section class="sec role" id="trades">
-    <span class="emo" aria-hidden="true">🔧</span>
-    <h2>Trades</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">🔧</span><h2>Trades</h2></div>
     <p>If you&#x27;re on the tools all day, AI is most useful for the paperwork at the end of it: quotes, write-ups and replies, often from a voice note.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Turn rough notes or a voice note into a tidy quote or invoice</li><li>Write up a finished job with photos for the customer</li><li>Reply to enquiries fast, even when you&#x27;re on a job</li><li>Explain a technical problem to a customer in plain English</li><li>Keep checklists for paperwork, certificates and renewals</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">Notes into a quote</p><div class="prompt">Here are my notes from a job visit: [paste notes, or speak them into the app]. Turn them into a quote with a list of work, materials, labour and a total. My day rate is [£] and materials are at cost plus [10]%. Don&#x27;t add any work I haven&#x27;t mentioned.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Quick reply</p><div class="prompt">A customer has messaged: [paste message]. I&#x27;m on a job until 4pm. Write a short, friendly WhatsApp reply saying I&#x27;ll call after 4, and asking for their postcode and a photo of the problem.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Explain it plainly</p><div class="prompt">Explain to a customer, in plain English, why their [boiler / consumer unit / roof] needs [the work]. Two short paragraphs. No jargon and no scare tactics.</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>Regulations and safety are on you.</b> AI is not a source for Building Regs, Gas Safe or wiring rules, so check the official guidance. Read every quote before it goes out.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Turn rough notes or a voice note into a tidy quote or invoice</li><li>Write up a finished job with photos for the customer</li><li>Reply to enquiries fast, even when you&#x27;re on a job</li><li>Explain a technical problem to a customer in plain English</li><li>Keep checklists for paperwork, certificates and renewals</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>Notes into a quote</summary><div class="inner"><div class="fields"></div><div class="prompt">Here are my notes from a job visit: [paste notes, or speak them into the app]. Turn them into a quote with a list of work, materials, labour and a total. My day rate is [£ day rate] and materials are at cost plus [markup %=10]%. Don&#x27;t add any work I haven&#x27;t mentioned.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Quick reply</summary><div class="inner"><div class="fields"></div><div class="prompt">A customer has messaged: [paste message]. I&#x27;m on a job until 4pm. Write a short, friendly WhatsApp reply saying I&#x27;ll call after 4, and asking for their postcode and a photo of the problem.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Explain it plainly</summary><div class="inner"><div class="fields"></div><div class="prompt">Explain to a customer, in plain English, why their [boiler / consumer unit / roof] needs [the work]. Two short paragraphs. No jargon and no scare tactics.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>Regulations and safety are on you.</b> AI is not a source for Building Regs, Gas Safe or wiring rules, so check the official guidance. Read every quote before it goes out.</div>
   </section>
   <section class="sec role" id="office">
-    <span class="emo" aria-hidden="true">💼</span>
-    <h2>Office or services</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">💼</span><h2>Office or services</h2></div>
     <p>For office work, AI is a first-draft machine and a speed reader. It&#x27;s good at emails, summaries and explaining documents, as long as you check the result.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Draft emails, proposals and letters</li><li>Summarise meetings and long documents (Copilot does this inside Microsoft 365)</li><li>Write the FAQs for your website</li><li>Explain and tidy up spreadsheets and formulas</li><li>Turn a messy process into a simple checklist</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">Reply to an email</p><div class="prompt">Here&#x27;s an email I received: [paste]. Write a reply that [agrees / says no politely / asks for more time]. Keep it under 120 words, friendly but professional, and match the tone of the original.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Summarise a document</p><div class="prompt">Summarise the document below for someone who has 2 minutes. Give me: what it&#x27;s about in one line, the 5 key points, any dates or deadlines, and anything I need to do. Only use what&#x27;s in the document. [paste or attach]</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Explain a spreadsheet</p><div class="prompt">Here&#x27;s a formula from our spreadsheet: [paste formula]. Explain what it does in plain English, step by step, and tell me if there&#x27;s a simpler way to do the same thing.</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>Use the tool your work has approved</b> for anything confidential, such as client files or contracts. If your company has Microsoft 365 Copilot, that's usually the one.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Draft emails, proposals and letters</li><li>Summarise meetings and long documents (Copilot does this inside Microsoft 365)</li><li>Write the FAQs for your website</li><li>Explain and tidy up spreadsheets and formulas</li><li>Turn a messy process into a simple checklist</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>Reply to an email</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s an email I received: [paste the email]. Write a reply that [agrees / says no politely / asks for more time]. Keep it under 120 words, friendly but professional, and match the tone of the original.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Summarise a document</summary><div class="inner"><div class="fields"></div><div class="prompt">Summarise the document below for someone who has 2 minutes. Give me: what it&#x27;s about in one line, the 5 key points, any dates or deadlines, and anything I need to do. Only use what&#x27;s in the document. [paste the document]</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Explain a spreadsheet</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s a formula from our spreadsheet: [paste formula]. Explain what it does in plain English, step by step, and tell me if there&#x27;s a simpler way to do the same thing.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>Use the tool your work has approved</b> for anything confidential, such as client files or contracts. If your company has Microsoft 365 Copilot, that's usually the one.</div>
   </section>
   <section class="sec role" id="tech">
-    <span class="emo" aria-hidden="true">🧑‍💻</span>
-    <h2>Developers and technical people</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">🧑‍💻</span><h2>Developers and technical people</h2></div>
     <p>AI coding tools now read your codebase, run commands and make changes. Used well, they&#x27;re like a fast junior who never gets tired. You still own every line that ships.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Explain unfamiliar code, logs and stack traces</li><li>Find the likely cause of a bug and suggest the smallest fix</li><li>Write tests, scripts, docs and migration plans</li><li>Review a pull request for bugs, edge cases and security issues</li><li>Run multi-step tasks in your repo with agents like Claude Code, Codex or GitHub Copilot</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">Debug an error</p><div class="prompt">Here&#x27;s a function and the error it throws: [paste code and stack trace]. Explain the most likely cause in 3 bullets, then suggest the smallest fix. Don&#x27;t rewrite unrelated code, and tell me how to confirm the fix.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Write tests</p><div class="prompt">Write unit tests for this function using [pytest / Jest]. Cover normal cases, edge cases and bad input. List any behaviour that looks like a bug rather than writing a test that passes on it. [paste code]</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Learn a codebase</p><div class="prompt">I&#x27;m new to this repo. Trace how a request goes from [entry point] to [the database / external API]. List the files and functions in order, with one line on what each does. Point out anything that looks risky or surprising.</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>Review and test everything before it merges.</b> Never paste secrets, keys or customer data. To go further, see <a href="/setup.html">Setup</a>, <a href="/harness.html">Harness</a> and <a href="/evals.html">Evals</a>.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Explain unfamiliar code, logs and stack traces</li><li>Find the likely cause of a bug and suggest the smallest fix</li><li>Write tests, scripts, docs and migration plans</li><li>Review a pull request for bugs, edge cases and security issues</li><li>Run multi-step tasks in your repo with agents like Claude Code, Codex or GitHub Copilot</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>Debug an error</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s a function and the error it throws: [paste code and stack trace]. Explain the most likely cause in 3 bullets, then suggest the smallest fix. Don&#x27;t rewrite unrelated code, and tell me how to confirm the fix.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Write tests</summary><div class="inner"><div class="fields"></div><div class="prompt">Write unit tests for this function using [pytest / Jest]. Cover normal cases, edge cases and bad input. List any behaviour that looks like a bug rather than writing a test that passes on it. [paste code]</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Learn a codebase</summary><div class="inner"><div class="fields"></div><div class="prompt">I&#x27;m new to this repo. Trace how a request goes from [entry point] to [the database / external API]. List the files and functions in order, with one line on what each does. Point out anything that looks risky or surprising.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>Review and test everything before it merges.</b> Never paste secrets, keys or customer data. To go further, see <a href="/setup.html">Setup</a>, <a href="/harness.html">Harness</a> and <a href="/evals.html">Evals</a>.</div>
   </section>
   <section class="sec role" id="pm">
-    <span class="emo" aria-hidden="true">📋</span>
-    <h2>Project and programme managers</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">📋</span><h2>Project and programme managers</h2></div>
     <p>A lot of delivery work is turning messy inputs into clear outputs: notes into status reports, transcripts into actions, plans into risks. AI is very good at that first pass.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Turn weekly notes into a status report or steering pack</li><li>Pull decisions, actions and owners out of meeting transcripts</li><li>Stress-test a plan for risks, dependencies and assumptions</li><li>Rewrite one update for different audiences: execs, users, suppliers</li><li>Draft RAID logs, charters, lessons learned and cutover checklists</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">Weekly status report</p><div class="prompt">Here are my notes from this week: [paste]. Write a one-page status update for the steering group with: overall RAG and a one-line reason, progress this week, next week, top 3 risks with owners, and decisions needed. Plain English. Don&#x27;t invent dates or owners: mark anything missing as TBC.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Actions from a meeting</p><div class="prompt">Here&#x27;s the meeting transcript: [paste]. List the decisions made, the actions with owner and due date, and the open questions. Only include what was actually said. If an action has no owner, say so.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Stress-test the plan</p><div class="prompt">Here&#x27;s our plan summary: [paste milestones, dependencies, team]. Act as a sceptical programme director. List the 10 risks most likely to hurt us, with likelihood, impact and a mitigation for each, in a table. Then list the 3 assumptions I should check this week.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">One update, three audiences</p><div class="prompt">Rewrite this update three ways: for the CFO (cost, timing, risk in 5 lines), for end users (what changes for them and when), and for our supplier (what we need from them by when). [paste update]</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>RAG status and judgement calls stay with you.</b> AI doesn't know the politics, the history or which dates are real. Only paste programme material into a tool your organisation has approved.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Turn weekly notes into a status report or steering pack</li><li>Pull decisions, actions and owners out of meeting transcripts</li><li>Stress-test a plan for risks, dependencies and assumptions</li><li>Rewrite one update for different audiences: execs, users, suppliers</li><li>Draft RAID logs, charters, lessons learned and cutover checklists</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>Weekly status report</summary><div class="inner"><div class="fields"></div><div class="prompt">Here are my notes from this week: [paste your notes]. Write a one-page status update for the steering group with: overall RAG and a one-line reason, progress this week, next week, top 3 risks with owners, and decisions needed. Plain English. Don&#x27;t invent dates or owners: mark anything missing as TBC.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Actions from a meeting</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s the meeting transcript: [paste the transcript]. List the decisions made, the actions with owner and due date, and the open questions. Only include what was actually said. If an action has no owner, say so.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Stress-test the plan</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s our plan summary: [paste milestones, dependencies, team]. Act as a sceptical programme director. List the 10 risks most likely to hurt us, with likelihood, impact and a mitigation for each, in a table. Then list the 3 assumptions I should check this week.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>One update, three audiences</summary><div class="inner"><div class="fields"></div><div class="prompt">Rewrite this update three ways: for the CFO (cost, timing, risk in 5 lines), for end users (what changes for them and when), and for our supplier (what we need from them by when). [paste the update]</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>RAG status and judgement calls stay with you.</b> AI doesn't know the politics, the history or which dates are real. Only paste programme material into a tool your organisation has approved.</div>
   </section>
   <section class="sec role" id="itdirector">
-    <span class="emo" aria-hidden="true">🏛️</span>
-    <h2>IT directors and leaders</h2>
+    <div class="role-head"><span class="em" aria-hidden="true">🏛️</span><h2>IT directors and leaders</h2></div>
     <p>Leaders get most value from AI as a thinking partner and a fast drafter: policies, board papers, vendor reviews and deciding which ideas to back.</p>
-    <h3 class="sub">What it can do for you</h3>
-    <ul><li>Draft an AI acceptable use policy and guidance for staff</li><li>Score and prioritise AI ideas from across the business</li><li>Summarise vendor proposals, contracts and RFP responses</li><li>Draft board papers and investment cases, then challenge them</li><li>Prepare for difficult conversations with suppliers or the board</li></ul>
-    <h3 class="sub">Prompts to try</h3>
-    <div class="pbox"><p class="pname">AI use policy</p><div class="prompt">Draft a one-page AI acceptable use policy for a [size] [sector] company in the UK. Cover: approved tools, data that must never be pasted in, when a human must review the output, and who to ask. Plain English, for all staff, not lawyers.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Prioritise AI ideas</p><div class="prompt">Here are the AI ideas my teams have suggested: [list]. Score each from 1 to 5 on value, effort, risk and data readiness, in a table. Recommend 3 to pilot this quarter, say why, and say what would tell us each pilot worked.</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Review a vendor proposal</p><div class="prompt">Summarise this vendor proposal for a board member: what we get, what it costs over 3 years, lock-in and data risks, and the 5 questions we should ask before signing. [paste or attach]</div><button class="copy" type="button">Copy</button></div>
-    <div class="pbox"><p class="pname">Challenge my paper</p><div class="prompt">Here&#x27;s my draft board paper: [paste]. Act as a sceptical non-executive director. What are the 5 hardest questions I&#x27;ll be asked, and where is my case weakest?</div><button class="copy" type="button">Copy</button></div>
-    <div class="watch"><b>Accountability doesn't move to the tool.</b> Check data protection duties (UK GDPR and ICO guidance) and your sector's rules before rolling anything out. See the <a href="/enterprise.html">Enterprise AI Framework</a> for the bigger picture.</div>
-    <a class="top" href="#top">Back to the top ↑</a>
+    <h3 class="sub">What it can help with</h3>
+    <ul class="cando"><li>Draft an AI acceptable use policy and guidance for staff</li><li>Score and prioritise AI ideas from across the business</li><li>Summarise vendor proposals, contracts and RFP responses</li><li>Draft board papers and investment cases, then challenge them</li><li>Prepare for difficult conversations with suppliers or the board</li></ul>
+    <h3 class="sub">Prompts: fill in the boxes, then copy or open</h3>
+    <details class="pcard" open><summary>AI use policy</summary><div class="inner"><div class="fields"></div><div class="prompt">Draft a one-page AI acceptable use policy for a [company size] [sector] company in the UK. Cover: approved tools, data that must never be pasted in, when a human must review the output, and who to ask. Plain English, for all staff, not lawyers.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Prioritise AI ideas</summary><div class="inner"><div class="fields"></div><div class="prompt">Here are the AI ideas my teams have suggested: [list the ideas]. Score each from 1 to 5 on value, effort, risk and data readiness, in a table. Recommend 3 to pilot this quarter, say why, and say what would tell us each pilot worked.</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Review a vendor proposal</summary><div class="inner"><div class="fields"></div><div class="prompt">Summarise this vendor proposal for a board member: what we get, what it costs over 3 years, lock-in and data risks, and the 5 questions we should ask before signing. [paste the proposal]</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <details class="pcard"><summary>Challenge my paper</summary><div class="inner"><div class="fields"></div><div class="prompt">Here&#x27;s my draft board paper: [paste the paper]. Act as a sceptical non-executive director. What are the 5 hardest questions I&#x27;ll be asked, and where is my case weakest?</div><div class="acts"><button type="button" class="primary" data-act="copy">Copy prompt</button><a data-act="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener">Open in ChatGPT</a><a data-act="claude" href="https://claude.ai/new" target="_blank" rel="noopener">Open in Claude</a><span class="left"></span></div></div></details>
+    <div class="watch">⚠️ <b>Accountability doesn't move to the tool.</b> Check data protection duties (UK GDPR and ICO guidance) and your sector's rules before rolling anything out. See the <a href="/enterprise.html">Enterprise AI Framework</a> for the bigger picture.</div>
+  </section>
+
+  <section class="sec">
+    <h2>Four habits that make any prompt work</h2>
+    <div class="tips">
+      <div><b>Give it the facts</b>Paste the details it needs. It can't see your shop, your notes or your inbox.</div>
+      <div><b>Treat it as a draft</b>Ask for changes one at a time: "shorter", "friendlier", "drop the last point".</div>
+      <div><b>Check what matters</b>Prices, dates, names and rules. AI can sound sure and still be wrong.</div>
+      <div><b>Keep private things out</b>No passwords, card numbers or other people's personal details.</div>
+    </div>
+    <p style="margin-top:14px">Want the why behind it? Read <a href="/how-to-ask.html">How to ask AI for what you need</a>. Not sure which tool to use? See <a href="/compare.html">Which AI tool?</a></p>
   </section>
 
   <a class="cta" href="https://humanagency.co/#o4-contact">
@@ -424,16 +431,75 @@ img, video, iframe { max-width: 100%; }
     <p>Human Agency. No hype, no theory. Just understanding. © 2026 Human Agency</p>
   </div>
 </footer>
+
 <script>
 (function () {
+  document.documentElement.classList.add("js");
   var t = document.getElementById("nav-toggle"), n = document.getElementById("nav");
   if (t && n) t.addEventListener("click", function () { var o = n.classList.toggle("active"); t.setAttribute("aria-expanded", o ? "true" : "false"); });
-  document.querySelectorAll(".pbox .copy").forEach(function (b) {
-    b.addEventListener("click", function () {
-      var text = b.parentNode.querySelector(".prompt").textContent;
-      var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); };
-      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () { b.textContent = "Select and copy"; });
+
+  var roles = Array.prototype.slice.call(document.querySelectorAll(".role"));
+  var tiles = Array.prototype.slice.call(document.querySelectorAll(".pick a"));
+  var hint = document.getElementById("hint");
+  function show(id, scroll) {
+    var found = roles.some(function (r) { return r.id === id; });
+    roles.forEach(function (r) { r.hidden = found && r.id !== id; });
+    if (!found) roles.forEach(function (r) { r.hidden = true; });
+    tiles.forEach(function (a) { a.setAttribute("aria-current", a.dataset.role === id ? "true" : "false"); });
+    if (hint) hint.hidden = found;
+    if (found && scroll) document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  tiles.forEach(function (a) { a.addEventListener("click", function (ev) {
+    ev.preventDefault(); history.replaceState(null, "", "#" + a.dataset.role); show(a.dataset.role, true);
+  }); });
+  window.addEventListener("hashchange", function () { show(location.hash.slice(1), true); });
+  show(location.hash.slice(1), false);
+  if (location.hash.length > 1) setTimeout(function () { var el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }, 50);
+
+  // Turn [placeholders] in each prompt into fields, and rebuild the prompt as people type
+  var BIG = /paste|list|notes|availability|describe|specials|material/i;
+  function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+  document.querySelectorAll(".pcard").forEach(function (card) {
+    var box = card.querySelector(".prompt"), fieldsEl = card.querySelector(".fields");
+    var tpl = box.textContent, keys = [], vals = {};
+    tpl.replace(/\[([^\]]+)\]/g, function (_, k) { if (keys.indexOf(k) < 0) keys.push(k); });
+    keys.forEach(function (k) {
+      var lab = document.createElement("label"), el, opts = k.split(" / "), def = "";
+      var label = k; if (k.indexOf("=") > 0) { label = k.split("=")[0]; def = k.split("=")[1]; }
+      var name = label.replace(/^(paste|list) (the |your )?/i, "").replace(/, or .*$/, "");
+      name = name.charAt(0).toUpperCase() + name.slice(1);
+      if (opts.length > 1) {
+        el = document.createElement("select");
+        opts.forEach(function (o) { var op = document.createElement("option"); op.textContent = o; el.appendChild(op); });
+        vals[k] = opts[0]; name = "Pick one";
+      } else if (BIG.test(k)) {
+        el = document.createElement("textarea"); el.placeholder = label; lab.className = "wide";
+      } else {
+        el = document.createElement("input"); el.placeholder = label;
+        if (def) { el.value = def; vals[k] = def; }
+      }
+      lab.appendChild(document.createTextNode(name));
+      lab.appendChild(el); fieldsEl.appendChild(lab);
+      el.addEventListener("input", function () { vals[k] = el.value.trim(); render(); });
     });
+    var left = card.querySelector(".left");
+    function filled() { return tpl.replace(/\[([^\]]+)\]/g, function (m, k) { return vals[k] ? vals[k] : "[" + k.split("=")[0] + "]"; }); }
+    function render() {
+      box.innerHTML = esc(tpl).replace(/\[([^\]]+)\]/g, function (m, k) {
+        return vals[k] ? '<span class="fill">' + esc(vals[k]) + "</span>" : '<span class="gap">[' + esc(k.split("=")[0]) + "]</span>";
+      });
+      var gaps = keys.filter(function (k) { return !vals[k]; }).length;
+      left.textContent = gaps ? gaps + (gaps === 1 ? " box" : " boxes") + " left to fill (or fill them in the chat)" : "Ready to go";
+      var q = encodeURIComponent(filled());
+      card.querySelector('[data-act="chatgpt"]').href = "https://chatgpt.com/?q=" + q;
+      card.querySelector('[data-act="claude"]').href = "https://claude.ai/new?q=" + q;
+    }
+    card.querySelector('[data-act="copy"]').addEventListener("click", function (ev) {
+      var b = ev.currentTarget, text = filled();
+      var ok = function () { b.textContent = "Copied ✓"; setTimeout(function () { b.textContent = "Copy prompt"; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(ok, function () { b.textContent = "Select the text to copy"; });
+    });
+    render();
   });
 })();
 </script>

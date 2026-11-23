@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Writing Evals and Rubrics | Human Agency</title>
+<title>Eval Rubrics, Judges and Tools | Human Agency</title>
 <meta name="description" content="How to write an AI eval with a rubric: one failure mode per judge, binary pass/fail, worked examples, and checking the judge against human labels.">
 <link rel="stylesheet" href="/path.css">
 <style id="mobile-fixes">
@@ -19,26 +19,23 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
+      <a href="/guide.html">Start here</a>
       <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
+      <a href="/basics.html">Basics</a>
       <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
+      <a href="/paths.html" aria-current="page" style="color:var(--text);font-weight:700">Go deeper</a>
       <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
-      <a href="/search.html" aria-label="Search">🔍</a>
+      <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="crumbs"><a href="/paths.html">Learning paths</a> · Evals · Step 2 of 3</div>
-  <div class="tag">Evals · Rubrics</div>
-  <h1>Writing evals and rubrics</h1>
-  <p class="lede">A rubric is the written standard a judge uses to decide pass or fail. This article shows how to write one that people agree on, and how to check that it works.</p>
+  <div class="crumbs"><a href="/paths.html">Go deeper</a> · Evals · Step 3 of 3</div>
+  <div class="tag">Evals · Rubrics, judges and tools</div>
+  <h1>Rubrics, judges and tools</h1>
+  <p class="lede">A rubric is the written standard a judge uses to decide pass or fail. This step shows how to write one that people agree on, how to check that it works, and which tools can take on the slow parts.</p>
 
   <div class="callout"><strong>The rule:</strong> one eval per failure mode, a yes/no answer, and a clear definition of what counts as a fail. If two people can read the rubric and disagree, it is not finished.</div>
 
@@ -101,15 +98,48 @@ Answer with exactly one word: PASS or FAIL.</code></pre>
   </ol>
   <p>Look at both kinds of error. A judge that misses real failures gives false confidence. A judge that flags good answers wastes your time and hides the real problems.</p>
 
+  <h2>How many examples?</h2>
+  <div class="two">
+    <div class="card"><h3>To start</h3><p><strong>20 to 50 examples.</strong> Enough to see patterns.</p></div>
+    <div class="card"><h3>To find the failures</h3><p><strong>About 100.</strong> Roughly where new kinds of failure stop turning up.</p></div>
+    <div class="card"><h3>To trust a judge</h3><p><strong>About 50 passes and 50 fails,</strong> labelled by a person, so you can see how often the judge agrees on each side.</p></div>
+    <div class="card"><h3>Keep reference answers</h3><p>Judges struggle on questions they couldn't answer themselves. A good human-written reference answer closes much of that gap.</p></div>
+  </div>
+  <p>Run the whole thing again after any big change: a new model, a prompt rewrite, a new feature or a production incident.</p>
+
+  <h2 id="tools">Tools that help</h2>
+  <p>AI assistants and eval platforms can do the slow parts: drafting datasets, writing scorer code, running the suite and showing results. They can't decide what failure means for your product. That part stays with you.</p>
+  <p>A coding assistant such as Claude Code or OpenAI Codex can write the scaffolding for you. A useful prompt:</p>
+  <pre><code>Here are 3 real outputs that failed, and my note on each failure.
+Write a binary judge rubric for the failure "invents a refund rule".
+Give one PASS and one FAIL example. Do not add other criteria.</code></pre>
+  <p>Then read the rubric as a stranger would, run it on your hand-labelled examples, and don't let the same model both write the rubric and mark the answers without checking against people.</p>
+  <div class="card"><h3>Promptfoo</h3><p>Open source and command-line first. Good for running evals in your release pipeline, so a failing test blocks a release. Includes red-team tests for prompt injection.</p></div>
+  <div class="card"><h3>Braintrust</h3><p>A hosted platform built around experiments: compare two versions side by side and review outputs in a web page. Good when product managers and engineers share the review work.</p></div>
+  <div class="card"><h3>Langfuse</h3><p>Open source and self-hostable, centred on tracing every model call, then building datasets and evals from real traces. Useful when data has to stay on your own systems.</p></div>
+  <p><strong>How to choose:</strong> start with no tool, since a spreadsheet of 30 labelled outputs is enough for round one. Add a tool when evals run on every change, a shared platform when non-engineers review outputs, and a self-hosted one when data can't leave your systems. Check current features and pricing first, as these change often.</p>
+
+  <h2>What this means for a product manager</h2>
+  <ul>
+    <li><strong>The rubric is the spec.</strong> For AI features, it's where product intent gets written down. Owning the rubric is owning quality.</li>
+    <li><strong>Reading real outputs is product work,</strong> not just engineering. Naming failure modes needs domain judgement.</li>
+    <li><strong>Model choice is a filter, not a strategy.</strong> Shortlist on benchmarks, decide on your own evals.</li>
+    <li><strong>Ship the loop, not just the feature.</strong> Without it, nobody can tell whether a prompt change helped.</li>
+    <li><strong>Questions to ask any AI team:</strong> what's in your test set? Which failure modes have you named? How often do you check the judge against people? What happens when a live failure is found?</li>
+  </ul>
+
   <div class="next">
-    <a href="/eval-basics.html"><span class="label">Previous</span>← Evals basics</a>
-    <a href="/eval-tools.html"><span class="label">Next</span>Using tools to build evals →</a>
+    <a href="/write-your-first-eval.html"><span class="label">Previous: step 2</span>← Write your first eval</a>
+    <a href="/what-is-a-harness.html"><span class="label">Next path</span>What is a harness? →</a>
   </div>
 
   <h2 style="font-size:17px; margin-top:36px;">Sources</h2>
   <ul class="sources">
     <li><a href="https://hamel.dev" target="_blank" rel="noopener">Hamel Husain on LLM-as-a-judge and error analysis (hamel.dev)</a></li>
     <li><a href="https://arxiv.org/abs/2503.05061v1" target="_blank" rel="noopener">Krumdick et al., "No Free Labels": limits of LLM-as-a-judge without human grounding</a></li>
+    <li><a href="https://www.promptfoo.dev" target="_blank" rel="noopener">Promptfoo documentation</a></li>
+    <li><a href="https://www.braintrust.dev" target="_blank" rel="noopener">Braintrust</a></li>
+    <li><a href="https://langfuse.com" target="_blank" rel="noopener">Langfuse documentation</a></li>
   </ul>
 
   <p class="note">Compiled by Human Agency from the sources listed. Method summarised from the sources above. For terms, see the <a href="/jargon.html">Jargon Decoder</a>.</p>

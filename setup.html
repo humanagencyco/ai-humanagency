@@ -1,335 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Getting Started: Setup Guides</title>
-  <meta name="description" content="Step-by-step guides to set up Claude Code in your terminal, the Claude desktop app, or your code editor.">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set Up Claude: Desktop App, Terminal or VS Code | Human Agency</title>
+<meta name="description" content="Set up Claude in about 5 minutes: the desktop app, Claude Code in the terminal, or Claude Code in VS Code. Step by step, with fixes for common errors.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #f9f8f6;
-      --surface: #ffffff;
-      --border: #ebebeb;
-      --text: #111111;
-      --muted: #666666;
-      --accent: #4f46e5;
-      --good: #10b981;
-    }
+:root {
+  --bg: #f9f8f6;
+  --surface: #ffffff;
+  --border: #ebebeb;
+  --text: #111111;
+  --muted: #666666;
+  --subtle: #aaaaaa;
+  --accent: #4f46e5;
+}
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f0f0f;
-        --surface: #1a1a1a;
-        --border: #2a2a2a;
-        --text: #f5f5f5;
-        --muted: #999999;
-      }
-    }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #f5f5f5;
+    --muted: #999999;
+    --subtle: #666666;
+  }
+}
 
-    :root[data-theme="light"] {
-      --bg: #f9f8f6;
-      --surface: #ffffff;
-      --border: #ebebeb;
-      --text: #111111;
-      --muted: #666666;
-    }
+:root[data-theme="light"] {
+  --bg: #f9f8f6;
+  --surface: #ffffff;
+  --border: #ebebeb;
+  --text: #111111;
+  --muted: #666666;
+}
 
-    :root[data-theme="dark"] {
-      --bg: #0f0f0f;
-      --surface: #1a1a1a;
-      --border: #2a2a2a;
-      --text: #f5f5f5;
-      --muted: #999999;
-    }
+:root[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+  --text: #f5f5f5;
+  --muted: #999999;
+}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
 
-    a { color: inherit; text-decoration: none; }
+header { border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 15px; font-weight: 800; letter-spacing: -0.4px; color: var(--text); text-decoration: none; }
+.logo .dot { color: var(--accent); }
+nav { display: flex; gap: 24px; align-items: center; }
+nav a { font-size: 13px; font-weight: 500; color: var(--muted); transition: color 0.15s; text-decoration: none; }
+nav a:hover { color: var(--text); }
+.nav-mobile-toggle { display: none; background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; }
 
-    /* Header */
-    header {
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+.hero { max-width: 900px; margin: 0 auto; padding: 56px 24px 32px; }
+.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 900; letter-spacing: -0.8px; line-height: 1.15; color: var(--text); margin-bottom: 12px; }
+.hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 24px; line-height: 1.7; }
+.search-wrap { position: relative; max-width: 440px; }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--subtle); font-size: 15px; pointer-events: none; }
+.search-input { width: 100%; font-family: 'Inter', sans-serif; font-size: 15px; padding: 12px 52px 12px 42px; border: 2px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--text); outline: none; transition: border-color .15s; }
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--subtle); }
+.search-kbd { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 10px; font-weight: 700; color: var(--subtle); background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; pointer-events: none; font-family: 'Inter', sans-serif; transition: opacity .15s; letter-spacing: .3px; }
+.search-input:focus ~ .search-kbd { opacity: 0; }
+.recent-strip { display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; align-items: center; }
+.recent-label { font-size: 11px; font-weight: 700; color: var(--subtle); white-space: nowrap; letter-spacing: .3px; }
+.recent-pill { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 4px 12px; cursor: pointer; transition: all .15s; }
+.recent-pill:hover { color: var(--accent); border-color: var(--accent); }
 
-    .header-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.filters { max-width: 900px; margin: 0 auto; padding: 20px 24px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.pill:hover { border-color: var(--accent); color: var(--accent); }
+.pill.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-    .logo {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -0.4px;
-      color: var(--text);
-      text-decoration: none;
-    }
+.terms { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
 
-    .logo .dot { color: var(--accent); }
+.term-row { border-bottom: 1px solid var(--border); }
+.terms > .term-row:first-child { border-top: 1px solid var(--border); }
 
-    nav {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
+.term-header { display: flex; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; user-select: none; }
+.term-name { font-size: 17px; font-weight: 800; letter-spacing: -0.3px; color: var(--text); width: 170px; flex-shrink: 0; transition: color .15s; }
+.term-row:hover .term-name { color: var(--accent); }
+.term-oneliner { font-size: 14px; color: var(--muted); flex: 1; line-height: 1.5; }
+.term-badge { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; flex-shrink: 0; white-space: nowrap; }
+.badge-basics      { background: #dcfce7; color: #166534; }
+.badge-intermediate { background: #fef9c3; color: #854d0e; }
+.badge-advanced    { background: #ede9fe; color: #5b21b6; }
+.term-arrow { font-size: 13px; color: var(--subtle); flex-shrink: 0; transition: transform .2s ease; }
+.term-row.open .term-arrow { transform: rotate(90deg); color: var(--accent); }
 
-    nav a {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      transition: color 0.15s;
-    }
+.term-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
+.term-row.open .term-body { grid-template-rows: 1fr; }
+.term-body-inner { overflow: hidden; }
+.term-body-text { padding: 0 0 22px 186px; font-size: 15px; color: #444; line-height: 1.85; }
 
-    nav a:hover { color: var(--text); }
-    nav a.active { color: var(--accent); font-weight: 600; }
+.no-results { padding: 56px 0; text-align: center; font-size: 15px; color: var(--muted); }
 
-    /* Hero */
-    .hero {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 72px 24px 48px;
-      text-align: center;
-    }
+footer { border-top: 1px solid var(--border); background: var(--surface); }
+.footer-inner { max-width: 900px; margin: 0 auto; padding: 32px 24px; text-align: center; font-size: 12px; color: var(--muted); }
 
-    .hero h1 {
-      font-size: clamp(32px, 6vw, 48px);
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
+@media (max-width: 768px) {
+  .header-inner { padding: 0 16px; }
+  nav { display: none; position: absolute; top: 56px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 0; }
+  nav.active { display: flex; }
+  nav a { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .nav-mobile-toggle { display: block; }
+  .hero { padding: 40px 16px 24px; }
+  .hero h1 { font-size: 24px; }
+  .search-wrap { max-width: 100%; }
+  .filters { padding: 16px 16px 12px; gap: 6px; }
+  .terms { padding: 0 16px 60px; }
+  .term-oneliner { font-size: 12px; }
+  .term-name { font-size: 16px; width: 100%; }
+  .term-body-text { padding: 0 0 16px 0; }
+  .footer-inner { padding: 24px 16px; }
+}
 
-    .hero p {
-      font-size: 16px;
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+@media (max-width: 480px) {
+  .header-inner { padding: 0 12px; }
+  .logo { font-size: 13px; }
+  .hero { padding: 32px 12px 20px; }
+  .hero h1 { font-size: 20px; }
+  .search-wrap { max-width: 100%; }
+  .filters { padding: 12px 12px 8px; gap: 4px; }
+  .terms { padding: 0 12px 40px; }
+  .term-name { font-size: 14px; }
+  .term-oneliner { font-size: 11px; }
+  .term-body-text { font-size: 13px; padding: 0 0 12px 0; }
+  .footer-inner { padding: 20px 12px; font-size: 11px; }
+}
 
-    /* Main Content */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
 
-    /* Guide Grid */
-    .guides-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-      gap: 24px;
-      margin-bottom: 60px;
-    }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.page-hero { padding: 56px 0 24px; }
+.page-hero h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero p { font-size: 18px; color: var(--muted); }
+.sec { padding: 36px 0; border-top: 1px solid var(--border); }
+.sec h2 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 12px; }
+.sec p { font-size: 16px; margin-bottom: 14px; }
+.sec ul, .sec ol { margin: 0 0 14px 22px; font-size: 16px; }
+.sec li { margin-bottom: 8px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin: 14px 0; }
+.card h3 { font-size: 16px; margin-bottom: 6px; }
+.card p { font-size: 15px; color: var(--muted); margin: 0; }
+.tag { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .two { grid-template-columns: 1fr; } .page-hero h1 { font-size: 32px; } }
 
-    .guide-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.page-hero { padding: 56px 0 24px; }
+.page-hero h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero p { font-size: 18px; color: var(--muted); }
+.tag { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.sec { padding: 32px 0; border-top: 1px solid var(--border); }
+.sec h2 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 12px; }
+.sec p { font-size: 16px; margin-bottom: 14px; }
+.layer { display:flex; gap:16px; background: var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; margin:12px 0; }
+.layer .n { font-size:22px; font-weight:800; color:var(--accent); min-width:34px; }
+.layer h3 { font-size:17px; margin-bottom:4px; }
+.layer p { font-size:15px; color:var(--muted); margin:0; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.card { background: var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+.card h3 { font-size:16px; margin-bottom:6px; }
+.card p, .card li { font-size:15px; color:var(--muted); margin:0 0 6px; }
+.card ul { margin:6px 0 0 18px; }
+.note { font-size:13px; color:var(--muted); border-left:3px solid var(--accent); padding:4px 0 4px 14px; margin-top:28px; }
+@media (max-width:640px){ .two{grid-template-columns:1fr;} .page-hero h1{font-size:32px;} }
 
-    .guide-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.1);
-      transform: translateY(-4px);
-    }
-
-    .guide-card a {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      height: 100%;
-    }
-
-    .guide-icon {
-      font-size: 40px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-    }
-
-    .guide-title {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-    }
-
-    .guide-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      flex: 1;
-    }
-
-    .guide-meta {
-      display: flex;
-      gap: 16px;
-      font-size: 12px;
-      color: var(--muted);
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .guide-cta {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-
-    /* Path Section */
-    .path-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 40px;
-      margin-bottom: 60px;
-    }
-
-    .path-title {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 24px;
-    }
-
-    .paths {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-      gap: 24px;
-    }
-
-    .path {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-    }
-
-    .path-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .path-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .path-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .path-step {
-      font-size: 13px;
-      color: var(--text);
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .path-step::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    /* FAQ Section */
-    .faq-section {
-      margin-bottom: 60px;
-    }
-
-    .faq-title {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 24px;
-    }
-
-    .faq-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 16px;
-    }
-
-    .faq-q {
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
-
-    .faq-a {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--surface);
-      padding: 40px 0;
-      text-align: center;
-    }
-
-    .footer-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    /* Mobile */
-    @media (max-width: 640px) {
-      .guides-grid { gap: 16px; }
-      .guide-card { padding: 24px; }
-      .path-section { padding: 20px; }
-    }
-  
 /* ===== Shared site header (keep identical on every page) ===== */
 header.site-header { position: sticky; top: 0; z-index: 100; background: var(--surface, #ffffff); border-bottom: 1px solid var(--border, #ebebeb); }
 .site-header .header-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -376,6 +217,49 @@ a { color: var(--accent); }
   .pill-article { background: #223020 !important; color: #b5d9a4 !important; }
   .pill-case { background: #3a2d18 !important; color: #f0cc8a !important; }
 }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.page-hero { padding: 56px 0 24px; }
+.page-hero h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero p { font-size: 18px; color: var(--muted); }
+.tag { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.sec { padding: 32px 0; border-top: 1px solid var(--border); }
+.sec h2 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 12px; }
+.sec p { font-size: 16px; margin-bottom: 14px; }
+.sec ul, .sec ol { margin: 0 0 14px 22px; font-size: 16px; }
+.sec li { margin-bottom: 8px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+.card h3 { font-size: 17px; margin-bottom: 6px; }
+.card p { font-size: 15px; color: var(--muted); margin: 0; }
+.prompt { font-family: ui-monospace, Menlo, monospace; font-size: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin: 10px 0; white-space: pre-wrap; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.note { font-size: 13px; color: var(--muted); border-left: 3px solid var(--border); padding: 4px 0 4px 14px; margin-top: 28px; }
+@media (max-width: 640px) { .compare { grid-template-columns: 1fr; } .page-hero h1 { font-size: 32px; } }
+
+/* ===== Setup: one page, three ways ===== */
+.ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 6px; }
+.ways a { display: flex; flex-direction: column; gap: 4px; padding: 14px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--text); text-decoration: none; }
+.ways a .em { font-size: 26px; line-height: 1; }
+.ways a b { font-size: 15px; }
+.ways a span.d { font-size: 13px; color: var(--muted); }
+.ways a:hover { border-color: var(--accent); }
+.ways a[aria-current="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
+.way { scroll-margin-top: 72px; }
+.js .way[hidden] { display: none; }
+.st { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; margin: 10px 0; }
+.st .n { flex: 0 0 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.st h3 { font-family: inherit !important; font-weight: 700 !important; font-size: 16px; margin-bottom: 4px; }
+.st p { font-size: 15px; color: var(--muted); margin: 0 0 6px; }
+.cmd { display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px 8px 8px 14px; margin: 6px 0; font-family: ui-monospace, Menlo, monospace; font-size: 14px; }
+.cmd code { flex: 1; overflow-x: auto; white-space: nowrap; background: none; }
+.cmd button { font: inherit; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); cursor: pointer; }
+.cmd button:hover { color: var(--accent); border-color: var(--accent); }
+.fix { font-size: 14px; color: var(--muted); margin-top: 6px; }
+.fix summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+details.faq { border-bottom: 1px solid var(--border); padding: 12px 0; }
+details.faq summary { cursor: pointer; font-weight: 600; font-size: 16px; }
+details.faq p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+@media (max-width: 640px) { .ways { grid-template-columns: 1fr; } }
 </style>
 <style id="mobile-fixes">
 /* Phones: let form controls shrink inside rows, stop media spilling over, and avoid iOS zoom on focus */
@@ -390,144 +274,79 @@ img, video, iframe { max-width: 100%; }
     <a class="logo" href="/">Human<span class="dot">.</span>Agency</a>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav id="nav">
+      <a href="/guide.html">Start here</a>
       <a href="/for-you.html">For you</a>
-      <a href="/llm-explained.html">What is AI?</a>
-      <a href="/jargon.html">Jargon</a>
-      <a href="/compare.html">Tools</a>
-      <a href="/use-cases.html">Use Cases</a>
-      <a href="/setup.html">Setup</a>
+      <a href="/basics.html">Basics</a>
+      <a href="/compare.html" aria-current="page" style="color:var(--text);font-weight:700">Tools</a>
+      <a href="/paths.html">Go deeper</a>
       <a href="/reading.html">Reading</a>
-      <a href="/resources.html">Resources</a>
-      <a href="/paths.html">Paths</a>
       <a href="https://humanagency.co/#o4-contact" style="color:var(--accent);font-weight:700">Work with us</a>
       <a href="/search.html" class="nav-search" aria-label="Search">🔍</a>
     </nav>
   </div>
 </header>
+<main class="wrap">
+  <section class="page-hero">
+    <div class="tag">Setup</div>
+    <h1>Set up Claude, your way</h1>
+    <p>Three ways to get Claude working on your own files. About 5 minutes each. Pick one: you can always add the others later.</p>
+    <div class="ways"><a href="#desktop" data-way="desktop"><span class="em" aria-hidden="true">🖥️</span><b>Desktop app</b><span class="d">No terminal. Easiest to start.</span></a><a href="#terminal" data-way="terminal"><span class="em" aria-hidden="true">💻</span><b>Terminal</b><span class="d">One command. Best for developers.</span></a><a href="#vscode" data-way="vscode"><span class="em" aria-hidden="true">🧩</span><b>VS Code</b><span class="d">Inside your code editor.</span></a></div>
+  </section>
 
+  <section class="sec way" id="desktop">
+    <h2>🖥️ Desktop app</h2>
+    <div class="st"><div class="n">1</div><div><h3>Download the Claude app</h3><p>Get Claude for Mac or Windows from <a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a> and install it like any other app.</p></div></div><div class="st"><div class="n">2</div><div><h3>Sign in</h3><p>Use the same account as claude.ai. Chatting works on the free plan. Claude Code inside the app needs a paid plan (Pro, Max, Team or Enterprise).</p></div></div><div class="st"><div class="n">3</div><div><h3>Point it at a folder</h3><p>Open Claude Code in the app and choose a project folder. A new empty folder is fine for a first try.</p></div></div><div class="st"><div class="n">4</div><div><h3>Ask for something small</h3><p>Type a request in plain English, for example: <em>"Create a simple web page that says hello."</em> Claude shows each change and asks before saving it, so you stay in control.</p></div></div>
+  </section>
+  <section class="sec way" id="terminal">
+    <h2>💻 Terminal</h2>
+    <div class="st"><div class="n">1</div><div><h3>Check what you need</h3><p>A Mac, Linux or Windows computer, a paid Claude plan or an Anthropic Console account, and a project folder. You don't need to install anything else first.</p></div></div><div class="st"><div class="n">2</div><div><h3>Install Claude Code</h3><p><strong>Mac, Linux or WSL:</strong></p><div class="cmd"><code>curl -fsSL https://claude.ai/install.sh | bash</code><button type="button">Copy</button></div><p><strong>Windows (PowerShell):</strong></p><div class="cmd"><code>irm https://claude.ai/install.ps1 | iex</code><button type="button">Copy</button></div><p>On a Mac with Homebrew, <code>brew install --cask claude-code</code> also works.</p><details class="fix"><summary>It didn't work</summary><p>See the official <a href="https://code.claude.com/docs/en/troubleshoot-install" target="_blank" rel="noopener">install troubleshooting page</a>. If you installed with npm before, run <code>claude install</code> to switch to the native version, and never use sudo with npm.</p></details></div></div><div class="st"><div class="n">3</div><div><h3>Check it installed</h3><p>Open a new terminal window and run this. You should see a version number.</p><div class="cmd"><code>claude --version</code><button type="button">Copy</button></div><details class="fix"><summary>command not found: claude</summary><p>Close the terminal and open a new one. Still failing? Run <code>claude doctor</code>.</p></details></div></div><div class="st"><div class="n">4</div><div><h3>Start it and sign in</h3><p>Go to your project folder and start Claude Code. The first time, it opens your browser to sign in.</p><div class="cmd"><code>cd your-project-folder</code><button type="button">Copy</button></div><div class="cmd"><code>claude</code><button type="button">Copy</button></div><p>Type <code>/login</code> later to switch accounts. If the browser doesn't open, copy the link from the terminal.</p></div></div><div class="st"><div class="n">5</div><div><h3>Your first task</h3><p>Type a request in plain English, such as <em>"Create a hello world script in Python"</em>. Claude Code asks before it changes files or runs commands. Type <code>/help</code> to see more. For a quick one-off question:</p><div class="cmd"><code>claude -p "What is an LLM?"</code><button type="button">Copy</button></div></div></div>
+  </section>
+  <section class="sec way" id="vscode">
+    <h2>🧩 VS Code</h2>
+    <div class="st"><div class="n">1</div><div><h3>Install VS Code</h3><p>Download it from <a href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a> if you don't have it. JetBrains editors have a Claude Code plugin too.</p></div></div><div class="st"><div class="n">2</div><div><h3>Add the Claude Code extension</h3><p>Open the Extensions panel (Cmd+Shift+X on Mac, Ctrl+Shift+X on Windows), search for <strong>Claude Code</strong> and install the one published by Anthropic.</p></div></div><div class="st"><div class="n">3</div><div><h3>Sign in</h3><p>Use your Claude account (needs a paid plan), or an API key from <a href="https://console.anthropic.com/keys" target="_blank" rel="noopener">console.anthropic.com</a>, which is billed per use.</p></div></div><div class="st"><div class="n">4</div><div><h3>Try it on a small task</h3><p>Open the Claude Code panel and ask: <em>"Create a hello world script in Python."</em> It shows each change before saving, so you can approve or reject it.</p><details class="fix"><summary>Nothing happens</summary><p>Check the extension is installed and enabled, and that you're signed in to the account you meant to use.</p></details></div></div>
+  </section>
 
+  <section class="sec">
+    <h2>Common questions</h2>
+    <details class="faq"><summary>Do I need to pay?</summary><p>Chatting with Claude is free. Claude Code needs a paid Claude plan (Pro, Max, Team or Enterprise) or an Anthropic Console account billed per use. Check <a href="https://claude.com/pricing" target="_blank" rel="noopener">claude.com/pricing</a> for current prices.</p></details>
+    <details class="faq"><summary>Which one should I start with?</summary><p>Never used a terminal? The desktop app. Already code? The terminal or VS Code.</p></details>
+    <details class="faq"><summary>Does it work on my computer?</summary><p>Yes, on Mac, Windows and Linux. The desktop app is Mac and Windows only.</p></details>
+    <details class="faq"><summary>I'm stuck</summary><p>Each step has a fix for the common errors. Still stuck? Email <a href="mailto:vikram@humanagency.co">vikram@humanagency.co</a> with the error and which setup you were following.</p></details>
+  </section>
 
-
-<div class="hero">
-  <h1>🚀 Getting Started</h1>
-  <p>Learn to build with AI. Step-by-step guides for Claude Code in your terminal, the Claude desktop app, and your code editor.</p>
-</div>
-
-<div class="container">
-  <!-- Main Guides -->
-  <div class="guides-grid">
-    <div class="guide-card">
-      <a href="setup-claude.html">
-        <div class="guide-icon">💻</div>
-        <div class="guide-title">Claude Setup</div>
-        <div class="guide-desc">Choose your path: Claude Code in the terminal, or the Claude desktop app. Both are in one interactive guide.</div>
-        <div class="guide-meta">
-          <div class="meta-item">⏱️ 5 minutes</div>
-          <div class="meta-item">🎯 Beginner</div>
-        </div>
-        <div class="guide-cta">Choose Your Path →</div>
-      </a>
-    </div>
-
-    <div class="guide-card">
-      <a href="setup-codex.html">
-        <div class="guide-icon">⚙️</div>
-        <div class="guide-title">Claude Code in your IDE</div>
-        <div class="guide-desc">Get Claude in your code editor. AI-powered suggestions, instant debugging, and coding assistance. VS Code & JetBrains supported.</div>
-        <div class="guide-meta">
-          <div class="meta-item">⏱️ 5 minutes</div>
-          <div class="meta-item">🎯 Beginner</div>
-        </div>
-        <div class="guide-cta">Setup Guide →</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- Learning Paths -->
-  <div class="path-section">
-    <h2 class="path-title">📍 Choose Your Path</h2>
-    <div class="paths">
-      <div class="path">
-        <div class="path-name">🔰 Complete Beginner</div>
-        <div class="path-desc">Never coded before? Start here and go step-by-step.</div>
-        <div class="path-steps">
-          <div class="path-step">Claude Code terminal setup</div>
-          <div class="path-step">Claude Code IDE Setup</div>
-        </div>
-      </div>
-
-      <div class="path">
-        <div class="path-name">💻 Developer</div>
-        <div class="path-desc">You code already. Get Claude in your workflow fast.</div>
-        <div class="path-steps">
-          <div class="path-step">Claude Code IDE Setup</div>
-        </div>
-      </div>
-
-      <div class="path">
-        <div class="path-name">🚀 DevOps / Automation</div>
-        <div class="path-desc">Command-line focused. Integrate Claude into scripts.</div>
-        <div class="path-steps">
-          <div class="path-step">Claude Code terminal setup</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="faq-section">
-    <h2 class="faq-title">❓ Common Questions</h2>
-
-    <div class="faq-item">
-      <div class="faq-q">Do I need to pay for Claude?</div>
-      <div class="faq-a">Yes. Claude Code needs a paid Claude plan (Pro, Max, Team or Enterprise) or an Anthropic Console account, where usage is billed. The free plan doesn't include it.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Which setup should I do first?</div>
-      <div class="faq-a">Never used a terminal? Start with the Claude desktop app. If you already code, set up Claude Code in the terminal or in your editor.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">What OS do I need?</div>
-      <div class="faq-a">All guides work on Mac, Linux, and Windows. We call out OS-specific steps where they matter.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">How long does this actually take?</div>
-      <div class="faq-a">About 5 minutes for each.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">I got stuck. What now?</div>
-      <div class="faq-a">Each guide has a troubleshooting section for common errors. Still stuck? Email vikram@humanagency.co with the error and which guide you were on.</div>
-    </div>
-  </div>
-</div>
+  <p class="note">Next: compare Claude with other tools on <a href="/compare.html">Which AI tool?</a>, or learn to ask well with <a href="/how-to-ask.html">How to ask AI</a>.</p>
+</main>
 
 <footer>
   <div class="footer-inner">
     <p>Human Agency. No hype, no theory. Just understanding. © 2026 Human Agency</p>
   </div>
 </footer>
-
 <script>
 (function () {
-  var t = document.getElementById('nav-toggle'), n = document.getElementById('nav');
-  if (!t || !n) return;
-  t.addEventListener('click', function () {
-    var open = n.classList.toggle('open');
-    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  var t = document.getElementById("nav-toggle"), n = document.getElementById("nav");
+  if (t && n) t.addEventListener("click", function () { var o = n.classList.toggle("active"); t.setAttribute("aria-expanded", o ? "true" : "false"); });
+})();
+</script>
+<script>
+(function () {
+  document.documentElement.classList.add("js");
+  var ways = Array.prototype.slice.call(document.querySelectorAll(".way")), tiles = Array.prototype.slice.call(document.querySelectorAll(".ways a"));
+  function show(id) {
+    if (!ways.some(function (w) { return w.id === id; })) id = "desktop";
+    ways.forEach(function (w) { w.hidden = w.id !== id; });
+    tiles.forEach(function (a) { a.setAttribute("aria-current", a.dataset.way === id ? "true" : "false"); });
+  }
+  tiles.forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); history.replaceState(null, "", "#" + a.dataset.way); show(a.dataset.way); }); });
+  window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
+  show(location.hash.slice(1));
+  document.querySelectorAll(".cmd button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = b.parentNode.querySelector("code").textContent;
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { b.textContent = "Copied ✓"; setTimeout(function () { b.textContent = "Copy"; }, 1500); });
+    });
   });
 })();
 </script>
 </body>
-<script>
-document.addEventListener("keydown", (e) => {
-  if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-    e.preventDefault();
-    window.location.href = "/search.html";
-  }
-});
-</script>
 </html>
